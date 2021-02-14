@@ -64,9 +64,9 @@ public class ResourcesController {
     }
 
     @PutMapping(value="/updateSpectator/{id}")
-    public ResponseEntity<String> updateSpectator(@PathVariable(name="id") Long id,@RequestBody Spectateur user){
-        user.setUserId(id);
-        spectateurRepository.save(user);
+    public ResponseEntity<String> updateSpectator(@PathVariable(name="id") Long id,@RequestBody Spectateur spectateur){
+        spectateur.setSpectateurId(id);
+        spectateurRepository.save(spectateur);
         return new ResponseEntity<>("Spectator was updated successfully !", HttpStatus.OK);
     }
 

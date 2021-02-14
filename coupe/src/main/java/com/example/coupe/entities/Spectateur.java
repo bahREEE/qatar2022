@@ -20,17 +20,17 @@ public class Spectateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long spectateurId;
 
-    private String username;
+    private String spectateurUsername;
 
-    private String firstName;
+    private String spectateurFirstName;
 
-    private String lastName;
+    private String spectateurlastName;
 
-    private String address;
+    private String spectateuraddress;
 
     @Email
-    private String email;
+    private String spectateurEmail;
     
 }
