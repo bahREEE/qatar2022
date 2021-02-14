@@ -2,7 +2,10 @@ package com.example.coupe.controller;
 
 import java.util.List;
 
+//import com.example.coupe.dao.EquipeRepository;
+import com.example.coupe.dao.JoueurRepository;
 import com.example.coupe.dao.SpectateurRepository;
+import com.example.coupe.entities.Joueur;
 import com.example.coupe.entities.Spectateur;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +24,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/coupe")
-public class SpectateurController {
+public class ResourcesController {
 
     @Autowired
     private SpectateurRepository spectateurRepository;
+    @Autowired
+    private JoueurRepository joueurRepository;
+    //@Autowired
+    //private EquipeRepository equipeRepository;
+
+
 
     @GetMapping(value = "/spectators")
-    public List<Spectateur> listUsers(){
+    public List<Spectateur> listSpectators(){
         return spectateurRepository.findAll();
     }
 
@@ -37,28 +46,63 @@ public class SpectateurController {
     }
 
     @PostMapping(value="/saveSpectator")
-    public ResponseEntity<String> save(@Validated @RequestBody Spectateur s){
+    public ResponseEntity<String> saveSpectator(@Validated @RequestBody Spectateur s){
         spectateurRepository.save(s);
         return new ResponseEntity<>("Spectator was saved successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/deleteAllSpectator")
-    public ResponseEntity<String> deleteSpectator(){
+    @DeleteMapping(value="/deleteAllSpectators")
+    public ResponseEntity<String> deleteSpectators(){
         spectateurRepository.deleteAll();
         return new ResponseEntity<>("All spectators were deleted successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/deleteSpectatorbyId/{id}")
+    @DeleteMapping(value="/deleteSpectator/{id}")
     public ResponseEntity<String> deleteAspectator(@PathVariable Long id){
         spectateurRepository.deleteById(id);
         return new ResponseEntity<>("Spectator was deleted successfully !", HttpStatus.OK);
     }
 
-    @PutMapping(value="/updateSpectatorbyId/{id}")
+    @PutMapping(value="/updateSpectator/{id}")
     public ResponseEntity<String> updateSpectator(@PathVariable(name="id") Long id,@RequestBody Spectateur user){
         user.setUserId(id);
         spectateurRepository.save(user);
         return new ResponseEntity<>("Spectator was updated successfully !", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/joueurs")
+    public List<Joueur> listJoueurs(){
+        return joueurRepository.findAll();
+    }
+
+    @GetMapping(value = "/joueur/{id}")
+    public Joueur getJoueur(@PathVariable Long id){
+        return joueurRepository.findById(id).orElseThrow();
+    }
+
+    @PostMapping(value="/saveJoueur")
+    public ResponseEntity<String> saveJoueur(@Validated @RequestBody Joueur j){
+        joueurRepository.save(j);
+        return new ResponseEntity<>("Joueur was saved successfully !", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value="/deleteAllJoueurs")
+    public ResponseEntity<String> deleteJoueurs(){
+        joueurRepository.deleteAll();
+        return new ResponseEntity<>("All joueurs were deleted successfully !", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value="/deleteJoueur/{id}")
+    public ResponseEntity<String> deleteAjoueur(@PathVariable Long id){
+        joueurRepository.deleteById(id);
+        return new ResponseEntity<>("Joueur was deleted successfully !", HttpStatus.OK);
+    }
+
+    @PutMapping(value="/updateJoueur/{id}")
+    public ResponseEntity<String> updateJoueur(@PathVariable(name="id") Long id,@RequestBody Joueur joueur){
+        joueur.setJoueurId(id);
+        joueurRepository.save(joueur);
+        return new ResponseEntity<>("Joueur was updated successfully !", HttpStatus.OK);
     }
 
 }
