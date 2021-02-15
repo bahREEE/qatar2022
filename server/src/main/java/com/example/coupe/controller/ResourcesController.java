@@ -2,12 +2,6 @@ package com.example.coupe.controller;
 
 import java.util.List;
 
-//import com.example.coupe.dao.EquipeRepository;
-import com.example.coupe.dao.JoueurRepository;
-import com.example.coupe.dao.SpectateurRepository;
-import com.example.coupe.entities.Joueur;
-import com.example.coupe.entities.Spectateur;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.coupe.dao.EquipeRepository;
+//import com.example.coupe.dao.EquipeRepository;
+import com.example.coupe.dao.JoueurRepository;
+import com.example.coupe.dao.SpectateurRepository;
+import com.example.coupe.entities.Equipe;
+import com.example.coupe.entities.Joueur;
+import com.example.coupe.entities.Spectateur;
+
 
 @RestController
 @RequestMapping("/coupe")
@@ -30,8 +32,8 @@ public class ResourcesController {
     private SpectateurRepository spectateurRepository;
     @Autowired
     private JoueurRepository joueurRepository;
-    //@Autowired
-    //private EquipeRepository equipeRepository;
+    @Autowired
+    private EquipeRepository equipeRepository;
 
 
 
@@ -103,6 +105,26 @@ public class ResourcesController {
         joueur.setJoueurId(id);
         joueurRepository.save(joueur);
         return new ResponseEntity<>("Joueur was updated successfully !", HttpStatus.OK);
+    }
+    
+    @GetMapping(value="/equipes")
+    public List <Equipe> getAllEquipe(){
+    	
+    	return equipeRepository.findAll();
+    }
+    
+    
+    @PutMapping(value="/saveEquipe")
+    public ResponseEntity<String> addEquipe(@RequestBody Equipe e){
+       // joueur.setJoueurId(id);
+        equipeRepository.save(e);
+        return new ResponseEntity<>("Equipe was added successfully !", HttpStatus.OK);
+    }
+    
+    
+    @GetMapping(value = "/equipe/{id}")
+    public Equipe getEquipe(@PathVariable Long id){
+        return equipeRepository.findById(id).orElseThrow();
     }
 
 }
