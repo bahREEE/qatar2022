@@ -1,5 +1,6 @@
 package com.example.coupe.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,14 +25,20 @@ public class Joueur {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long joueurId;
 
-    private String jFirstName;
+    @Column(name="jfirst", nullable=false)
+    private String jfirst;
 
-    private String jLastName;
+    @Column(name="jlast", nullable=false)
+    private String jlast;
 
-    private int jNumber;
+    @Column(name="jnumber", nullable=false)
+    private int jnumber;
+
+    @JsonIgnore
+    private String imagepath;
 
     @ManyToOne
-    @JoinColumn(name="equipeId", nullable = true)
+    @JoinColumn(name="equipeId")
     private Equipe equipe;
 
 }

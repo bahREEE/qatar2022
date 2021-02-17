@@ -9,12 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "JoueurTBL")
+@Table(name = "EquipeTBL")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -28,7 +30,8 @@ public class Equipe {
     private String equipeContinent;
 
     @OneToMany(mappedBy = "equipe")
-    List<Joueur> listJoueurs;
+    @JsonIgnore
+    private List<Joueur> listJoueurs;
     
     
     

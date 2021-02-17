@@ -1,5 +1,6 @@
 package com.example.coupe.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,11 @@ import com.example.coupe.dao.EquipeRepository;
 //import com.example.coupe.dao.EquipeRepository;
 import com.example.coupe.dao.JoueurRepository;
 import com.example.coupe.dao.SpectateurRepository;
+import com.example.coupe.dataToJson.JoueurImage;
 import com.example.coupe.entities.Equipe;
 import com.example.coupe.entities.Joueur;
 import com.example.coupe.entities.Spectateur;
-
+//import com.google.gson.Gson;
 
 @RestController
 @RequestMapping("/coupe")
@@ -35,55 +37,57 @@ public class ResourcesController {
     @Autowired
     private EquipeRepository equipeRepository;
 
-
-
     @GetMapping(value = "/spectators")
-    public List<Spectateur> listSpectators(){
+    public List<Spectateur> listSpectators() {
         return spectateurRepository.findAll();
     }
 
     @GetMapping(value = "/spectator/{id}")
-    public Spectateur getAspectator(@PathVariable Long id){
+    public Spectateur getAspectator(@PathVariable Long id) {
         return spectateurRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping(value="/saveSpectator")
-    public ResponseEntity<String> saveSpectator(@Validated @RequestBody Spectateur s){
+    @PostMapping(value = "/saveSpectator")
+    public ResponseEntity<String> saveSpectator(@Validated @RequestBody Spectateur s) {
         spectateurRepository.save(s);
         return new ResponseEntity<>("Spectator was saved successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/deleteAllSpectators")
-    public ResponseEntity<String> deleteSpectators(){
+    @DeleteMapping(value = "/deleteAllSpectators")
+    public ResponseEntity<String> deleteSpectators() {
         spectateurRepository.deleteAll();
         return new ResponseEntity<>("All spectators were deleted successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/deleteSpectator/{id}")
-    public ResponseEntity<String> deleteAspectator(@PathVariable Long id){
+    @DeleteMapping(value = "/deleteSpectator/{id}")
+    public ResponseEntity<String> deleteAspectator(@PathVariable Long id) {
         spectateurRepository.deleteById(id);
         return new ResponseEntity<>("Spectator was deleted successfully !", HttpStatus.OK);
     }
 
-    @PutMapping(value="/updateSpectator/{id}")
-    public ResponseEntity<String> updateSpectator(@PathVariable(name="id") Long id,@RequestBody Spectateur spectateur){
+    @PutMapping(value = "/updateSpectator/{id}")
+    public ResponseEntity<String> updateSpectator(@PathVariable(name = "id") Long id,
+            @RequestBody Spectateur spectateur) {
         spectateur.setSpectateurId(id);
         spectateurRepository.save(spectateur);
         return new ResponseEntity<>("Spectator was updated successfully !", HttpStatus.OK);
     }
 
     @GetMapping(value = "/joueurs")
-    public List<Joueur> listJoueurs(){
+    public List<Joueur> listJoueurs() {
         return joueurRepository.findAll();
     }
 
     @GetMapping(value = "/joueur/{id}")
-    public Joueur getJoueur(@PathVariable Long id){
-        return joueurRepository.findById(id).orElseThrow();
+    public JoueurImage getJoueur(@PathVariable Long id) throws IOException {
+            Joueur j = new Joueur();
+            j = joueurRepository.findById(id).orElseThrow();
+            JoueurImage joueurWithImage = new JoueurImage(j);
+            return joueurWithImage;
     }
 
     @PostMapping(value="/saveJoueur")
-    public ResponseEntity<String> saveJoueur(@Validated @RequestBody Joueur j){
+    public ResponseEntity<String> saveJoueur(@RequestBody Joueur j){
         joueurRepository.save(j);
         return new ResponseEntity<>("Joueur was saved successfully !", HttpStatus.OK);
     }
@@ -114,7 +118,13 @@ public class ResourcesController {
     }
     
     
-    @PutMapping(value="/saveEquipe")
+    @GetMapping(value = "/equipe/{id}")
+    public Equipe getEquipe(@PathVariable Long id){
+        return equipeRepository.findById(id).orElseThrow();
+    }
+
+    
+    @PostMapping(value="/saveEquipe")
     public ResponseEntity<String> addEquipe(@RequestBody Equipe e){
        // joueur.setJoueurId(id);
         equipeRepository.save(e);
@@ -122,9 +132,4 @@ public class ResourcesController {
     }
     
     
-    @GetMapping(value = "/equipe/{id}")
-    public Equipe getEquipe(@PathVariable Long id){
-        return equipeRepository.findById(id).orElseThrow();
-    }
-
 }
