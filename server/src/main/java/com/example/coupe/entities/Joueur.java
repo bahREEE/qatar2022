@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,7 +32,7 @@ public class Joueur {
     @Column(name="jnumber", nullable=false)
     private int jnumber;
 
-    @JsonIgnore
+    //@JsonIgnore
     private String imagepath;
 
     @ManyToOne

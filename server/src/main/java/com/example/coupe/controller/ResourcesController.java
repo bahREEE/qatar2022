@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.coupe.Services.UploadService;
 import com.example.coupe.dao.EquipeRepository;
 import com.example.coupe.dao.JoueurRepository;
 import com.example.coupe.dao.SpectateurRepository;
@@ -28,6 +31,9 @@ import com.example.coupe.entities.Spectateur;
 @RestController
 @RequestMapping("/coupe")
 public class ResourcesController {
+
+    @Autowired
+    private UploadService uploadService;
 
     @Autowired
     private SpectateurRepository spectateurRepository;
@@ -130,5 +136,17 @@ public class ResourcesController {
         return new ResponseEntity<>("Equipe was added successfully !", HttpStatus.OK);
     }
     
+    @PostMapping("/uploadImage")
+    public String uploadImage(@RequestParam("imageFile") MultipartFile imageFile){
     
+        try {
+			uploadService.saveImage(imageFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+            System.out.println("Error uploading image !!!");
+		}
+
+        return "Image uploaded successfully!";
+    }
+
 }
