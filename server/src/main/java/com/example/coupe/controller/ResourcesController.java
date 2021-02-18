@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.coupe.dao.EquipeRepository;
-//import com.example.coupe.dao.EquipeRepository;
 import com.example.coupe.dao.JoueurRepository;
 import com.example.coupe.dao.SpectateurRepository;
 import com.example.coupe.dataToJson.JoueurImage;
 import com.example.coupe.entities.Equipe;
 import com.example.coupe.entities.Joueur;
 import com.example.coupe.entities.Spectateur;
-//import com.google.gson.Gson;
+
 
 @RestController
 @RequestMapping("/coupe")
