@@ -1,7 +1,6 @@
 import Login from "./Pages/Login/Login";
 import { Switch, Route, Redirect } from "react-router-dom";
-import "./App.css";
-
+import "./BoostStyles/styles.css";
 function App() {
   return (
     <div className="App">
