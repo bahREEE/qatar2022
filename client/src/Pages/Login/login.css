@@ -1,0 +1,17 @@
+.login__bg {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../../Images/back3.png);
+  background-size: cover;
+  position: relative;
+  color: white;
+}
+
+.login__bg ::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
