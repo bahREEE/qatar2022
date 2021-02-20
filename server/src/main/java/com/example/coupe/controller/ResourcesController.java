@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.coupe.Services.ByteService;
 import com.example.coupe.Services.UploadService;
+
 import com.example.coupe.dao.EquipeRepository;
 import com.example.coupe.dao.JoueurRepository;
 import com.example.coupe.dao.SpectateurRepository;
-import com.example.coupe.dataToJson.JoueurImage;
+
 import com.example.coupe.entities.Equipe;
 import com.example.coupe.entities.Joueur;
 import com.example.coupe.entities.Spectateur;
@@ -34,6 +36,9 @@ public class ResourcesController {
 
     @Autowired
     private UploadService uploadService;
+
+    @Autowired
+    private ByteService byteService;
 
     @Autowired
     private SpectateurRepository spectateurRepository;
@@ -84,11 +89,11 @@ public class ResourcesController {
     }
 
     @GetMapping(value = "/joueur/{id}")
-    public JoueurImage getJoueur(@PathVariable Long id) throws IOException {
-            Joueur j = new Joueur();
-            j = joueurRepository.findById(id).orElseThrow();
-            JoueurImage joueurWithImage = new JoueurImage(j);
-            return joueurWithImage;
+    public Joueur getJoueur(@PathVariable Long id) throws IOException {
+        Joueur j = new Joueur();
+        j = joueurRepository.findById(id).orElseThrow();
+        byteService.makeBytes(j);
+        return j;
     }
 
     @PostMapping(value="/saveJoueur")

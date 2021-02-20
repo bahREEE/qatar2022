@@ -1,5 +1,6 @@
 package com.example.coupe.entities;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,10 +36,15 @@ public class Joueur {
     private int jnumber;
 
     //@JsonIgnore
+    @Column(name="imagepath", nullable=false)
     private String imagepath;
+
+    @Column(name="imageBytes", nullable=true)
+    private byte[] imageBytes;
 
     @ManyToOne
     @JoinColumn(name="equipeId")
     private Equipe equipe;
+    
 
 }
