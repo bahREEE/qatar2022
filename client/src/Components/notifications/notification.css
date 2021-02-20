@@ -4,15 +4,15 @@
   max-width: 65%;
   background-color: white;
   height: 8rem;
-  top: 80%;
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
   border-radius: 0px 10px 10px 0px;
   padding: 2rem;
-  opacity: 1;
-  visibility: visible;
-  animation: notifacation 3s cubic-bezier(1, 0.07, 1, 0.07);
+  opacity: 0;
+  visibility: hidden;
+  animation: notifacation 2s;
 }
 
 .notif__bg::after {
@@ -34,7 +34,7 @@
 }
 
 .notif__icon {
-  width: 2rem;
+  width: 1.5rem;
   fill: currentColor;
   margin-right: 1rem;
 }
@@ -49,23 +49,32 @@
   0% {
     opacity: 0;
     visibility: hidden;
+    top: 100%;
+    left: 50%;
   }
 
-  9% {
+  5% {
     opacity: 1;
     visibility: visible;
     top: 80%;
+    left: 50%;
   }
 
-  94% {
+  80% {
     opacity: 1;
     visibility: visible;
     top: 80%;
     left: 50%;
   }
   95% {
+    opacity: 0.5;
+    visibility: visible;
+    left: 70%;
+    top: 80%;
+  }
+  99% {
     opacity: 0;
-    visibility: hidden;
+    visibility: visible;
     left: 80%;
     top: 80%;
   }

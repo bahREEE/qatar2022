@@ -7,7 +7,7 @@ import LoginInput from "../../Components/Inputs/LoginInput";
 
 import "./login.css";
 
-const Login = () => {
+const Login = ({ setNotification }) => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [errorsInputs, setErrorInputs] = useState({
     username: "",
@@ -34,6 +34,7 @@ const Login = () => {
         username: "Please Verify your Username",
       });
     }
+    setNotification("Logged in successufully", "Success");
   };
 
   return (
