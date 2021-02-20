@@ -32,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  animation: vanish 0.5s;
+  animation: vanish 1s;
 }
 
 .login__logo-icon {
@@ -72,8 +72,10 @@
 @keyframes vanish {
   0% {
     opacity: 0;
+    transform: translate(-45%, -50%);
   }
   100% {
     opacity: 1;
+    transform: translate(-50%, -50%);
   }
 }

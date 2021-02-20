@@ -37,10 +37,6 @@
   border-bottom: 3px solid #06b8b8;
 }
 
-.login__input:invalid {
-  border-bottom: 3px solid red;
-}
-
 .input__icon {
   fill: currentColor;
   width: 2rem;
