@@ -1,32 +1,26 @@
 package com.example.coupe.entities;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Entity
-@Table(name = "GroupeTBL")
+@Table(name="RoleTBL")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Groupe {
+public class MyRole {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long groupeId;
+    private Long roleId;
 
-    private Character groupeName;
-
-    @OneToMany(mappedBy = "groupe")
-    private Collection<Equipe> equipes;
+    private String roleName;
 
 }

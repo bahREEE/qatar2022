@@ -78,7 +78,7 @@ public class ResourcesController {
     @PutMapping(value = "/updateSpectator/{id}")
     public ResponseEntity<String> updateSpectator(@PathVariable(name = "id") Long id,
             @RequestBody Spectateur spectateur) {
-        spectateur.setSpectateurId(id);
+        spectateur.setUserId(id);
         spectateurRepository.save(spectateur);
         return new ResponseEntity<>("Spectator was updated successfully !", HttpStatus.OK);
     }
@@ -116,7 +116,7 @@ public class ResourcesController {
 
     @PutMapping(value="/updateJoueur/{id}")
     public ResponseEntity<String> updateJoueur(@PathVariable(name="id") Long id,@RequestBody Joueur joueur){
-        joueur.setJoueurId(id);
+        joueur.setUserId(id);
         joueurRepository.save(joueur);
         return new ResponseEntity<>("Joueur was updated successfully !", HttpStatus.OK);
     }
