@@ -1,38 +1,220 @@
-.App {
+.banner {
+	background: linear-gradient(rgba(0,0.5,0.5,0),#0f1414),url(Images/back3.png);
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+}
+.footer-container {
+  padding: 5px 0;
+  flex: 0 1 80%;
+  background-color: #303030;
+}
+
+.footer-container p {
+  color: white;
+  line-height: 19px;
+  margin: 5px 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: normal;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.banner h2 {
+  position: relative;
+  font-size: 4vw;
+  top: 300px;
+  left: 35px;
+  color: #fff;
+  -webkit-text-stroke: 0.3vw #000;
+  text-transform: uppercase;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.banner h2::before{
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  -webkit-text-stroke: 0vw #fff;
+  border-right: 2px solid #fff;
+  overflow: hidden;
+  animation: animate 6s linear infinite;
+}
+@keyframes animate
+{
+  0%
+  {
+    width: 0;
+  }
+  70%, 90%
+  {
+    width: 100%;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.position{
+  margin-right: 10px;
+  margin-top: 320px;
+}
+.banner-btn{
+	margin: 10px auto 0;
+  text-align: center;
+}
+.banner-btn a{
+	width: 130px;
+	text-decoration: none;
+	display: inline-block;
+	margin: 0 5px;
+	padding: 8px 0;
+	color: white;
+	border : 3px solid black ;
+  border-radius: 5px;
+	position: relative;
+	z-index: 1;
+	transition: color 0.5s;
+}
+.banner-btn a span{
+	width: 0%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left: 0;
+	background: rgb(118, 250, 255);
+	z-index: -1;
+	transition: 0.5s;
+}
+.banner-btn a:hover span{
+	width: 100%;
+}
+.banner-btn a:hover {
+	color: black;
+}
+.formBoxRight{
+  background: linear-gradient(rgba(0,0.5,0.5,0),#e8f1f1),url(Images/sign2.png);
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+}
+.regform{
+  width: 800px;
+  height: 160px;
+  padding-top: 300px;
+  background-color: rgb(0,0,0,0.6);
+  margin: auto;
+  color:#ffffff;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px 15px 0px 0px;
+  margin-top: 50px;
+}
+.mane{
+  background-color: rgb(0,0,0,0.5);
+  width: 800px;
+  height: 650px;
+  margin: auto;
+}
+form{
+  padding: 10px;
+}
+#name{
+  width: 100%;
+  height: 100px;
+}
+.name{
+  margin-left: 25px;
+  margin-top: 30px;
+  width: 125px;
   color: white;
+  font-size: 18px;
+  font-weight: 700;
 }
-
-.App-link {
-  color: #61dafb;
+.firstname{
+  position: relative;
+  left: 200px;
+  top: -37px;
+  line-height: 40px;
+  border-radius: 6px;
+  padding: 0 22px;
+  font-size: 16px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.lastname{
+  position: relative;
+  left: 180px;
+  top: -37px;
+  line-height: 40px;
+  border-radius: 6px;
+  padding: 0 22px;
+  font-size: 16px;
+  color: #555;
+}
+.firstlabel{
+  position: relative;
+  color: #e5e5e5;
+  text-transform: capitalize;
+  font-size: 14px;
+  right: 25px;
+  top: 0px;
+}
+.lastlabel{
+  position: relative;
+  color: #e5e5e5;
+  text-transform: capitalize;
+  font-size: 14px;
+  right: 50px;
+  top: 0px;
+}
+.company{
+  position: relative;
+  color: #555;
+  border-radius: 6px;
+  width: 510px;
+  height: 40px;
+  font-size: 16px;
+  left: 200px;
+  top: -37px;
+}
+.email{
+  position: relative;
+  color: #555;
+  border-radius: 6px;
+  line-height: 40px;
+  width: 510px;
+  height: 40px;
+  font-size: 16px;
+  left: 200px;
+  top: -37px;
+}
+.email2{
+  position: relative;
+  color: #555;
+  border-radius: 6px;
+  line-height: 40px;
+  width: 510px;
+  height: 40px;
+  font-size: 16px;
+  left: 200px;
+  top: -47px;
+}
+.btnsign{
+  text-align: center;
+  width: 200px;
+  height: 40px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 6px;
+  background-color: rgba(134, 19, 19, 0.4);
+  margin: 3px 300px 0;
+}
+.btnsign:hover {
+	color: white;
+}
+button:disabled,
+button[disabled],
+button:disabled:hover,
+button[disabled]:hover {
+  border: 1px solid black;
+  background-color: whie;
+  color: var(--dark-grey-color);
+  opacity: 0.65;
+  cursor: not-allowed;
 }
