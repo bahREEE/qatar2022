@@ -25,6 +25,16 @@
   background-color: currentColor;
 }
 
+.notif__time {
+  position: absolute;
+  width: 2rem;
+  left: 0;
+  right: 0;
+  top: 95%;
+  background-color: currentColor;
+  z-index: 300;
+}
+
 .notif__container {
   display: flex;
   align-items: center;
@@ -42,7 +52,7 @@
 .notif__para {
   color: black;
   font-size: 1.4rem;
-  font-family: 900;
+  font-weight: 500;
 }
 
 @keyframes notifacation {

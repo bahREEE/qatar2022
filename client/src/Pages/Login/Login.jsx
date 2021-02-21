@@ -34,7 +34,12 @@ const Login = ({ setNotification }) => {
         username: "Please Verify your Username",
       });
     }
-    setNotification("Verifier votre données", "Error");
+
+    if (user.username === "Helmy" && user.password === "helmy")
+      setNotification("Hey Admin ;)", "Success");
+    else {
+      setNotification("Verifier votre données", "Error");
+    }
   };
 
   return (
