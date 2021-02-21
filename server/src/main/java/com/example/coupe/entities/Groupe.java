@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +26,10 @@ public class Groupe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long groupeId;
 
-    private Character groupeName;
+    private String groupeName;
 
     @OneToMany(mappedBy = "groupe")
+    @JsonIgnore
     private Collection<Equipe> equipes;
 
 }

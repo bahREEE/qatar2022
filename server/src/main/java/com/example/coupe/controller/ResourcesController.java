@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +38,6 @@ public class ResourcesController {
     private UploadService uploadService;
 
     @Autowired
-    private ByteService byteService;
-
-    @Autowired
     private SpectateurRepository spectateurRepository;
     @Autowired
     private JoueurRepository joueurRepository;
@@ -48,6 +46,8 @@ public class ResourcesController {
     @Autowired
     private GroupeRepository groupeRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/spectators")
     public List<Spectateur> listSpectators() {
@@ -92,14 +92,14 @@ public class ResourcesController {
 
     @GetMapping(value = "/joueur/{id}")
     public Joueur getJoueur(@PathVariable Long id) throws IOException {
-        Joueur j = new Joueur();
-        j = joueurRepository.findById(id).orElseThrow();
-        byteService.makeBytes(j);
-        return j;
+        
+        return joueurRepository.findById(id).orElseThrow();
+      
     }
 
     @PostMapping(value = "/saveJoueur")
     public ResponseEntity<String> saveJoueur(@RequestBody Joueur j) {
+        j.setPassword(passwordEncoder.encode(j.getPassword()));
         joueurRepository.save(j);
         return new ResponseEntity<>("Joueur was saved successfully !", HttpStatus.OK);
     }
@@ -129,6 +129,13 @@ public class ResourcesController {
         return equipeRepository.findAll();
     }
 
+    @GetMapping(value = "/joueursEquipe/{id}")
+    public List<Joueur> getJoueursEquipe(@PathVariable Long id){
+        Equipe equipe = equipeRepository.findById(id).orElseThrow();
+        return joueurRepository.findByEquipe(equipe);
+            
+    }
+
     @GetMapping(value = "/equipe/{id}")
     public Equipe getEquipe(@PathVariable Long id) {
         return equipeRepository.findById(id).orElseThrow();
@@ -138,6 +145,25 @@ public class ResourcesController {
     public ResponseEntity<String> addEquipe(@RequestBody Equipe e){
         equipeRepository.save(e);
         return new ResponseEntity<>("Equipe was added successfully !", HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/updateEquipe/{id}")
+    public ResponseEntity<String> updateEquipe(@PathVariable(name = "id") Long id, @RequestBody Equipe equipe) {
+        equipe.setEquipeId(id);
+        equipeRepository.save(equipe);
+        return new ResponseEntity<>("Equipe was updated successfully !", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/deleteAllequipes")
+    public ResponseEntity<String> deleteEquipes(){
+        equipeRepository.deleteAll();
+        return new ResponseEntity<>("All equipes were deleted successfully !", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/deleteEquipe/{id}")
+    public ResponseEntity<String> deleteEquipe(@PathVariable Long id){
+        equipeRepository.deleteById(id);
+        return new ResponseEntity<>("Equipe was deleted successfully !", HttpStatus.OK);
     }
 
     @GetMapping(value = "/groupes")

@@ -1,5 +1,6 @@
 package com.example.coupe.entities;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.Collection;
 
@@ -8,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.example.coupe.Services.ByteService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -96,8 +101,12 @@ public class Joueur extends User {
         this.imagepath = imagepath;
     }
 
-    public byte[] getImageBytes() {
-        return imageBytes;
+    public byte[] getImageBytes() throws IOException {
+        if(imagepath != "" && imagepath != null){
+            MyByte mb = new MyByte();
+            return mb.byteConversion(this);
+        }
+        else return null;
     }
 
     public void setImageBytes(byte[] imageBytes) {

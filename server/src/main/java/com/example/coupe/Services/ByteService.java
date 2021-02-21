@@ -30,5 +30,13 @@ public class ByteService {
 
     }
 
+    public byte[] byteConversion(Joueur j) throws IOException {
+        File fnew=new File(j.getImagepath());
+        BufferedImage originalImage = ImageIO.read(fnew);
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "PNG", baos );
+        return baos.toByteArray();
+
+    }
 
 }

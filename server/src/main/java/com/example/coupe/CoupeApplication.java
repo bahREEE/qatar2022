@@ -30,9 +30,10 @@ public class CoupeApplication implements CommandLineRunner{
 		roleRepository.save(new MyRole((long) 1, "ADMIN"));
 		roleRepository.save(new MyRole((long) 2, "USER"));
 
+		/*
 		accountService.saveUser("user3", "xyxyxy", "xyxyxy", "mail@domain.com", Instant.now(), true);
 		accountService.addRoleToUser("user3", "USER");
-	
+		*/
 	}
 
 }
