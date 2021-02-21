@@ -14,7 +14,7 @@ public class CoupeApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		
+	
 		//spectateurRepository.save(new Spectateur((long) 1, "user1", "userFirstName", "userLastName", "Tunis","user@domain.com"));
 	
 	}

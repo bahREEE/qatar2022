@@ -2,6 +2,7 @@ package com.example.coupe.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,10 +28,14 @@ public class Equipe {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long equipeId;
 
+    @Column(name = "equipeName", nullable = false)
     private String equipeName;
 
+    
+    @Column(name = "equipeContinent", nullable = false)
     private String equipeContinent;
 
+    @Column(name = "classementMondial", nullable = true)
     private int classementMondial;
 
     @OneToMany(mappedBy = "equipe")
