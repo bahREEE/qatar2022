@@ -10,7 +10,8 @@ import com.example.coupe.entities.MyRole;
 import com.example.coupe.entities.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,12 +19,12 @@ import org.springframework.stereotype.Service;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
-    
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+ 
     @Override
     public User saveUser(String username, String password, String confirmedPassword, String email, Instant creationDate, Boolean activated) {
         User user = userRepository.findByUsername(username);
@@ -31,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
         if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
         User newUser = new User();
         newUser.setUsername(username);
-        newUser.setPassword(bCryptPasswordEncoder.encode(password));
+        newUser.setPassword(passwordEncoder.encode(password));
         newUser.setEmail(email);
         newUser.setCreationDate(Instant.now());
         newUser.setActivated(true);

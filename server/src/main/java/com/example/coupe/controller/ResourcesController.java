@@ -22,13 +22,14 @@ import com.example.coupe.Services.ByteService;
 import com.example.coupe.Services.UploadService;
 
 import com.example.coupe.dao.EquipeRepository;
+import com.example.coupe.dao.GroupeRepository;
 import com.example.coupe.dao.JoueurRepository;
 import com.example.coupe.dao.SpectateurRepository;
 
 import com.example.coupe.entities.Equipe;
+import com.example.coupe.entities.Groupe;
 import com.example.coupe.entities.Joueur;
 import com.example.coupe.entities.Spectateur;
-
 
 @RestController
 @RequestMapping("/coupe")
@@ -46,6 +47,9 @@ public class ResourcesController {
     private JoueurRepository joueurRepository;
     @Autowired
     private EquipeRepository equipeRepository;
+    @Autowired
+    private GroupeRepository groupeRepository;
+
 
     @GetMapping(value = "/spectators")
     public List<Spectateur> listSpectators() {
@@ -96,50 +100,77 @@ public class ResourcesController {
         return j;
     }
 
-    @PostMapping(value="/saveJoueur")
-    public ResponseEntity<String> saveJoueur(@RequestBody Joueur j){
+    @PostMapping(value = "/saveJoueur")
+    public ResponseEntity<String> saveJoueur(@RequestBody Joueur j) {
         joueurRepository.save(j);
         return new ResponseEntity<>("Joueur was saved successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/deleteAllJoueurs")
-    public ResponseEntity<String> deleteJoueurs(){
+    @DeleteMapping(value = "/deleteAllJoueurs")
+    public ResponseEntity<String> deleteJoueurs() {
         joueurRepository.deleteAll();
         return new ResponseEntity<>("All joueurs were deleted successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/deleteJoueur/{id}")
-    public ResponseEntity<String> deleteAjoueur(@PathVariable Long id){
+    @DeleteMapping(value = "/deleteJoueur/{id}")
+    public ResponseEntity<String> deleteAjoueur(@PathVariable Long id) {
         joueurRepository.deleteById(id);
         return new ResponseEntity<>("Joueur was deleted successfully !", HttpStatus.OK);
     }
 
-    @PutMapping(value="/updateJoueur/{id}")
-    public ResponseEntity<String> updateJoueur(@PathVariable(name="id") Long id,@RequestBody Joueur joueur){
+    @PutMapping(value = "/updateJoueur/{id}")
+    public ResponseEntity<String> updateJoueur(@PathVariable(name = "id") Long id, @RequestBody Joueur joueur) {
         joueur.setUserId(id);
         joueurRepository.save(joueur);
         return new ResponseEntity<>("Joueur was updated successfully !", HttpStatus.OK);
     }
-    
-    @GetMapping(value="/equipes")
-    public List <Equipe> getAllEquipe(){
-    	
-    	return equipeRepository.findAll();
+
+    @GetMapping(value = "/equipes")
+    public List<Equipe> getAllEquipe() {
+
+        return equipeRepository.findAll();
     }
-    
-    
+
     @GetMapping(value = "/equipe/{id}")
-    public Equipe getEquipe(@PathVariable Long id){
+    public Equipe getEquipe(@PathVariable Long id) {
         return equipeRepository.findById(id).orElseThrow();
     }
 
-    
     @PostMapping(value="/saveEquipe")
     public ResponseEntity<String> addEquipe(@RequestBody Equipe e){
-       // joueur.setJoueurId(id);
         equipeRepository.save(e);
         return new ResponseEntity<>("Equipe was added successfully !", HttpStatus.OK);
     }
+
+    @GetMapping(value = "/groupes")
+    public List<Groupe> getAllGroupes() {
+        return groupeRepository.findAll();
+    }
+
+    @GetMapping(value = "/groupe/{id}")
+    public Groupe getGroupe(@PathVariable Long id) {
+        return groupeRepository.findById(id).orElseThrow();
+    }
+
+    @DeleteMapping(value = "/deleteAllgroupes")
+    public ResponseEntity<String> deleteAllGroupes(){
+        groupeRepository.deleteAll();
+        return new ResponseEntity<>("All groupes were deleted successfully !", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/deleteGroupe/{id}")
+    public ResponseEntity<String> deleteGroupe(@PathVariable Long id){
+        groupeRepository.deleteById(id);
+        return new ResponseEntity<>("Groupe was deleted successfully !", HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/addGroupe")
+    public ResponseEntity<String> addGroupe(@RequestBody Groupe g){
+        groupeRepository.save(g);
+        return new ResponseEntity<>("Groupe was added successfully !", HttpStatus.OK);
+    }
+    
+    
     
     @PostMapping("/uploadImage")
     public String uploadImage(@RequestParam("imageFile") MultipartFile imageFile){
