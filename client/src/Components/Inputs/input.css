@@ -1,0 +1,43 @@
+.login__input {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid white;
+  width: 80%;
+  color: white;
+  transition: all 0.2s;
+}
+
+.login__input:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.input--1 {
+  width: 80%;
+  padding: 1rem 3rem;
+  border: none;
+  font-size: 2rem;
+  background-color: transparent;
+  color: currentColor;
+  transition: all 0.2s;
+  font-weight: 300;
+}
+
+.input--1::placeholder {
+  letter-spacing: 2px;
+  color: white;
+}
+
+.input--1:focus {
+  outline: none;
+}
+
+.login__input:focus-within {
+  width: 100%;
+  color: #06b8b8;
+  border-bottom: 3px solid #06b8b8;
+}
+
+.input__icon {
+  fill: currentColor;
+  width: 2rem;
+}
