@@ -1,21 +1,17 @@
-<<<<<<< HEAD
-import React from 'react'
-import { BrowserRouter, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import './App.css';
-import Navbar from './Components/Navbar/Navbar'
-import Landing from './Components/Landing/Landing'
-import Footer from './Components/Footer/Footer'
-import Signup from './Components/Signup/Signup'
-import 'bootstrap/dist/css/bootstrap.min.css';
-=======
-import Login from "./Pages/Login/Login";
 import React, { useState } from "react";
+import Navbar from "./Components/Navbar/Navbar";
+import Landing from "./Components/Landing/Landing";
+import Footer from "./Components/Footer/Footer";
+import Signup from "./Components/Signup/Signup";
+import Login from "./Pages/Login/Login";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Notification from "./Components/notifications/Notifications";
 import Cross from "./assets/svgs/Cross";
 import Check from "./assets/svgs/Check";
 import Info from "./assets/svgs/info";
 import "./BoostStyles/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 const App = () => {
   const [render, setRender] = useState(false);
@@ -74,35 +70,25 @@ const App = () => {
       }
     }
   };
->>>>>>> 9c19a81751de2b820e6f4309417c4b9a86a9b1a9
 
   return (
-<<<<<<< HEAD
-    <BrowserRouter>
-      <Navbar/>
-      <Switch>
-      <Route exact path="/" component={Landing}/>
-      <Route path="/signup" component={Signup}/>
-      </Switch>
-      <Footer/>
-    </BrowserRouter>
- 
-=======
     <div className="App">
+      <Navbar />
       <Switch>
         <Route
-          path="/"
+          path="/login"
           exact
           render={(props) => (
             <Login props={props} setNotification={setNotification} />
           )}
         />
+        <Route exact path="/" exact component={Landing} />
+        <Route path="/signup" exact component={Signup} />
         <Redirect to="/" />
-        
       </Switch>
+      <Footer />
       {render && <Notification informations={informations} />}
     </div>
->>>>>>> 9c19a81751de2b820e6f4309417c4b9a86a9b1a9
   );
 };
 

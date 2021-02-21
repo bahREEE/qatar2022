@@ -1,8 +1,9 @@
 .banner {
-	background: linear-gradient(rgba(0,0.5,0.5,0),#0f1414),url(Images/back3.png);
-	background-size: cover;
-	background-position: center;
-	height: 100vh;
+  background: linear-gradient(rgba(0, 0.5, 0.5, 0), #0f1414),
+    url(Images/back3.png);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 .footer-container {
   padding: 5px 0;
@@ -28,7 +29,7 @@
   -webkit-text-stroke: 0.3vw #000;
   text-transform: uppercase;
 }
-.banner h2::before{
+.banner h2::before {
   content: attr(data-text);
   position: absolute;
   top: 0;
@@ -39,88 +40,87 @@
   -webkit-text-stroke: 0vw #fff;
   border-right: 2px solid #fff;
   overflow: hidden;
-  animation: animate 6s linear infinite;
+  animation: animate 6s linear normal;
 }
-@keyframes animate
-{
-  0%
-  {
+@keyframes animate {
+  0% {
     width: 0;
   }
-  70%, 90%
-  {
+  70%,
+  90% {
     width: 100%;
   }
 }
-.position{
+.position {
   margin-right: 10px;
   margin-top: 320px;
 }
-.banner-btn{
-	margin: 10px auto 0;
+.banner-btn {
+  margin: 10px auto 0;
   text-align: center;
 }
-.banner-btn a{
-	width: 130px;
-	text-decoration: none;
-	display: inline-block;
-	margin: 0 5px;
-	padding: 8px 0;
-	color: white;
-	border : 3px solid black ;
+.banner-btn a {
+  width: 130px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 8px 0;
+  color: white;
+  border: 3px solid black;
   border-radius: 5px;
-	position: relative;
-	z-index: 1;
-	transition: color 0.5s;
+  position: relative;
+  z-index: 1;
+  transition: color 0.5s;
 }
-.banner-btn a span{
-	width: 0%;
-	height: 100%;
-	position: absolute;
-	top:0;
-	left: 0;
-	background: rgb(118, 250, 255);
-	z-index: -1;
-	transition: 0.5s;
+.banner-btn a span {
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(118, 250, 255);
+  z-index: -1;
+  transition: 0.5s;
 }
-.banner-btn a:hover span{
-	width: 100%;
+.banner-btn a:hover span {
+  width: 100%;
 }
 .banner-btn a:hover {
-	color: black;
+  color: black;
 }
-.formBoxRight{
-  background: linear-gradient(rgba(0,0.5,0.5,0),#e8f1f1),url(Images/sign2.png);
-	background-size: cover;
-	background-position: center;
-	height: 100vh;
+.formBoxRight {
+  background: linear-gradient(rgba(0, 0.5, 0.5, 0), #e8f1f1),
+    url(Images/sign2.png);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
-.regform{
+.regform {
   width: 800px;
   height: 160px;
   padding-top: 300px;
-  background-color: rgb(0,0,0,0.6);
+  background-color: rgb(0, 0, 0, 0.6);
   margin: auto;
-  color:#ffffff;
+  color: #ffffff;
   padding: 10px;
   text-align: center;
   border-radius: 15px 15px 0px 0px;
   margin-top: 50px;
 }
-.mane{
-  background-color: rgb(0,0,0,0.5);
+.mane {
+  background-color: rgb(0, 0, 0, 0.5);
   width: 800px;
   height: 650px;
   margin: auto;
 }
-form{
+form {
   padding: 10px;
 }
-#name{
+#name {
   width: 100%;
   height: 100px;
 }
-.name{
+.name {
   margin-left: 25px;
   margin-top: 30px;
   width: 125px;
@@ -128,7 +128,7 @@ form{
   font-size: 18px;
   font-weight: 700;
 }
-.firstname{
+.firstname {
   position: relative;
   left: 200px;
   top: -37px;
@@ -137,7 +137,7 @@ form{
   padding: 0 22px;
   font-size: 16px;
 }
-.lastname{
+.lastname {
   position: relative;
   left: 180px;
   top: -37px;
@@ -147,7 +147,7 @@ form{
   font-size: 16px;
   color: #555;
 }
-.firstlabel{
+.firstlabel {
   position: relative;
   color: #e5e5e5;
   text-transform: capitalize;
@@ -155,7 +155,7 @@ form{
   right: 25px;
   top: 0px;
 }
-.lastlabel{
+.lastlabel {
   position: relative;
   color: #e5e5e5;
   text-transform: capitalize;
@@ -163,7 +163,7 @@ form{
   right: 50px;
   top: 0px;
 }
-.company{
+.company {
   position: relative;
   color: #555;
   border-radius: 6px;
@@ -173,7 +173,7 @@ form{
   left: 200px;
   top: -37px;
 }
-.email{
+.email {
   position: relative;
   color: #555;
   border-radius: 6px;
@@ -184,7 +184,7 @@ form{
   left: 200px;
   top: -37px;
 }
-.email2{
+.email2 {
   position: relative;
   color: #555;
   border-radius: 6px;
@@ -195,7 +195,7 @@ form{
   left: 200px;
   top: -47px;
 }
-.btnsign{
+.btnsign {
   text-align: center;
   width: 200px;
   height: 40px;
@@ -206,7 +206,7 @@ form{
   margin: 3px 300px 0;
 }
 .btnsign:hover {
-	color: white;
+  color: white;
 }
 button:disabled,
 button[disabled],
