@@ -34,7 +34,7 @@ const Login = ({ setNotification }) => {
         username: "Please Verify your Username",
       });
     }
-    setNotification("Logged in successufully", "Success");
+    setNotification("Verifier votre données", "Error");
   };
 
   return (

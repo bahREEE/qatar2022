@@ -28,7 +28,7 @@ const App = () => {
         setRender(true);
         setTimeout(() => {
           setRender(false);
-        }, 2000);
+        }, 3000);
         break;
       }
 

@@ -12,7 +12,7 @@
   padding: 2rem;
   opacity: 0;
   visibility: hidden;
-  animation: notifacation 2s;
+  animation: notifacation 3s;
 }
 
 .notif__bg::after {
