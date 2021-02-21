@@ -20,12 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.coupe.Services.ByteService;
 import com.example.coupe.Services.UploadService;
-
 import com.example.coupe.dao.EquipeRepository;
 import com.example.coupe.dao.GroupeRepository;
 import com.example.coupe.dao.JoueurRepository;
 import com.example.coupe.dao.SpectateurRepository;
-
 import com.example.coupe.entities.Equipe;
 import com.example.coupe.entities.Groupe;
 import com.example.coupe.entities.Joueur;

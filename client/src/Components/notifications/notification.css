@@ -12,7 +12,7 @@
   padding: 2rem;
   opacity: 0;
   visibility: hidden;
-  animation: notifacation 2s;
+  animation: notifacation 3s;
 }
 
 .notif__bg::after {
@@ -23,6 +23,16 @@
   width: 3%;
   height: 100%;
   background-color: currentColor;
+}
+
+.notif__time {
+  position: absolute;
+  width: 2rem;
+  left: 0;
+  right: 0;
+  top: 95%;
+  background-color: currentColor;
+  z-index: 300;
 }
 
 .notif__container {
@@ -42,7 +52,7 @@
 .notif__para {
   color: black;
   font-size: 1.4rem;
-  font-family: 900;
+  font-weight: 500;
 }
 
 @keyframes notifacation {

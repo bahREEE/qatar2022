@@ -17,48 +17,50 @@ const App = () => {
   });
 
   const setNotification = (message, status) => {
-    switch (status) {
-      case "Success": {
-        setInformations({
-          ...informations,
-          styles: { color: "green" },
-          Icon: <Check />,
-          message,
-        });
-        setRender(true);
-        setTimeout(() => {
-          setRender(false);
-        }, 2000);
-        break;
-      }
+    if (!render) {
+      switch (status) {
+        case "Success": {
+          setInformations({
+            ...informations,
+            styles: { color: "green" },
+            Icon: <Check />,
+            message,
+          });
+          setRender(true);
+          setTimeout(() => {
+            setRender(false);
+          }, 3000);
+          break;
+        }
 
-      case "Error": {
-        console.log("erro");
-        setInformations({
-          ...informations,
-          styles: { color: "red" },
-          Icon: <Cross />,
-          message,
-        });
-        setRender(true);
-        setTimeout(() => {
-          setRender(false);
-        }, 3000);
-        break;
-      }
+        case "Error": {
+          console.log("erro");
+          setInformations({
+            ...informations,
+            styles: { color: "red" },
+            Icon: <Cross />,
+            message,
+          });
+          setRender(true);
+          setTimeout(() => {
+            setRender(false);
+          }, 3000);
+          break;
+        }
 
-      default: {
-        setInformations({
-          ...informations,
-          styles: { color: "blue" },
-          Icon: <Info />,
-          message,
-        });
-        setRender(true);
-        setTimeout(() => {
-          setRender(false);
-        }, 3000);
-        break;
+        default: {
+          setInformations({
+            ...informations,
+            styles: { color: "blue" },
+            Icon: <Info />,
+            message,
+          });
+          setRender(true);
+          setTimeout(() => {
+            setRender(false);
+          }, 3000);
+          break;
+        }
       }
     }
   };
@@ -74,6 +76,7 @@ const App = () => {
           )}
         />
         <Redirect to="/" />
+        
       </Switch>
       {render && <Notification informations={informations} />}
     </div>
