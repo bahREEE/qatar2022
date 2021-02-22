@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.coupe.Services.ByteService;
 import com.example.coupe.Services.UploadService;
 import com.example.coupe.dao.EquipeRepository;
 import com.example.coupe.dao.GroupeRepository;
@@ -175,6 +174,15 @@ public class ResourcesController {
     public Groupe getGroupe(@PathVariable Long id) {
         return groupeRepository.findById(id).orElseThrow();
     }
+
+    
+@GetMapping(value = "/equipesGroupe/{id}")
+public List<Equipe> getEquipesGroupe(@PathVariable Long id){
+
+	Groupe groupe = groupeRepository.findById(id).orElseThrow();
+	return equipeRepository.findByGroupe(groupe);
+
+}
 
     @DeleteMapping(value = "/deleteAllgroupes")
     public ResponseEntity<String> deleteAllGroupes(){

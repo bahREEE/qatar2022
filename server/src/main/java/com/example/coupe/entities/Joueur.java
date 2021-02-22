@@ -10,15 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.example.coupe.Services.ByteService;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.coupe.Utilities.MyByte;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "JoueurTBL")
-public class Joueur extends User {
+public class Joueur extends MyUser {
 
     @Column(name = "jfirst", nullable = false)
     private String jfirst;
@@ -41,24 +39,24 @@ public class Joueur extends User {
     private Equipe equipe;
 
     public Joueur(Long userId, String username, String password, String email, Instant creationDate, Boolean activated,
-            Collection<MyRole> roles) {
-        super(userId, username, password, email, creationDate, activated, roles);
-    }
+    Collection<MyRole> roles) {
+super(userId, username, password, email, creationDate, activated, roles);
+}
 
-    public Joueur() {
-    }
+public Joueur() {
+}
 
-    public Joueur(Long userId, String username, String password, String email, Instant creationDate, Boolean activated,
-            Collection<MyRole> roles, String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes,
-            Equipe equipe) {
-        super(userId, username, password, email, creationDate, activated, roles);
-        this.jfirst = jfirst;
-        this.jlast = jlast;
-        this.jnumber = jnumber;
-        this.imagepath = imagepath;
-        this.imageBytes = imageBytes;
-        this.equipe = equipe;
-    }
+public Joueur(Long userId, String username, String password, String email, Instant creationDate, Boolean activated,
+    Collection<MyRole> roles, String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes,
+    Equipe equipe) {
+super(userId, username, password, email, creationDate, activated, roles);
+this.jfirst = jfirst;
+this.jlast = jlast;
+this.jnumber = jnumber;
+this.imagepath = imagepath;
+this.imageBytes = imageBytes;
+this.equipe = equipe;
+}
 
     public Joueur(String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, Equipe equipe) {
         this.jfirst = jfirst;

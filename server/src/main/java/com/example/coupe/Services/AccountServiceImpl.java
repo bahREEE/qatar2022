@@ -7,7 +7,7 @@ import java.time.Instant;
 import com.example.coupe.dao.RoleRepository;
 import com.example.coupe.dao.UserRepository;
 import com.example.coupe.entities.MyRole;
-import com.example.coupe.entities.User;
+import com.example.coupe.entities.MyUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,11 +26,11 @@ public class AccountServiceImpl implements AccountService {
     private RoleRepository roleRepository;
  
     @Override
-    public User saveUser(String username, String password, String confirmedPassword, String email, Instant creationDate, Boolean activated) {
-        User user = userRepository.findByUsername(username);
+    public MyUser saveUser(String username, String password, String confirmedPassword, String email, Instant creationDate, Boolean activated) {
+        MyUser user = userRepository.findByUsername(username);
         if(user != null) throw new RuntimeException("This user already exists !!!");
         if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
-        User newUser = new User();
+        MyUser newUser = new MyUser();
         newUser.setUsername(username);
         newUser.setPassword(passwordEncoder.encode(password));
         newUser.setEmail(email);
@@ -47,13 +47,13 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User loadUserByUsername(String username) {
+    public MyUser loadUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
     public void addRoleToUser(String username, String rolename) {
-        User user = userRepository.findByUsername(username);
+        MyUser user = userRepository.findByUsername(username);
         MyRole role = roleRepository.findByroleName(rolename);
 
         user.getRoles().add(role);

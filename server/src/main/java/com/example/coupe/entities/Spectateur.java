@@ -9,7 +9,7 @@ import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "SpectateurTBL")
-public class Spectateur extends User {
+public class Spectateur extends MyUser {
 
     private String spectateurUsername;
 

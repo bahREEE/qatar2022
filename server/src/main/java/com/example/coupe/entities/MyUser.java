@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "UserTBL")
-public class User {
+public class MyUser {
     
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)

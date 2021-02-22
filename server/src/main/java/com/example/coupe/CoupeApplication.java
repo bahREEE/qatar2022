@@ -1,8 +1,8 @@
 package com.example.coupe;
 
-import java.time.Instant;
+//import java.time.Instant;
 
-import com.example.coupe.Services.AccountService;
+//import com.example.coupe.Services.AccountService;
 import com.example.coupe.dao.RoleRepository;
 import com.example.coupe.entities.MyRole;
 
@@ -17,8 +17,8 @@ public class CoupeApplication implements CommandLineRunner{
 	@Autowired
 	private RoleRepository roleRepository;
 
-	@Autowired
-	private AccountService accountService;
+	//@Autowired
+	//private AccountService accountService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CoupeApplication.class, args);
