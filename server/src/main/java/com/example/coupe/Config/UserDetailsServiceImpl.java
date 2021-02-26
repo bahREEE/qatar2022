@@ -16,11 +16,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+// We could've added this class to the Services package but since the task here
+// is related to security we chose to include it in this package
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    //@Autowired
-    //private AccountService accountService;
     @Autowired
     private UserRepository userRepository;
 

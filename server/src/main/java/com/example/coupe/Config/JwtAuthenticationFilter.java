@@ -24,12 +24,16 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static com.example.coupe.Config.SecurityConstants.SECRET;
+import static com.example.coupe.Config.SecurityConstants.EXPIRATION_TIME;
+import static com.example.coupe.Config.SecurityConstants.TOKEN_PREFIX;
+import static com.example.coupe.Config.SecurityConstants.HEADER_STRING;
+
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager  authenticationManager;
     
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager){
-        super();
         this.authenticationManager = authenticationManager;
     }
     
@@ -58,8 +62,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                     .withSubject(user.getUsername())
                     .withIssuer(request.getRequestURI())
                     .withArrayClaim("roles", roles.toArray(new String[roles.size()]))
-                    .withExpiresAt(new Date(System.currentTimeMillis()+10*5*3600))
-                    .sign(Algorithm.HMAC256("PogChamp"));
-        response.addHeader("AuthorizationHeader",jwt);
+                    .withExpiresAt(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
+                    .sign(Algorithm.HMAC512(SECRET.getBytes()));
+        response.addHeader(HEADER_STRING, TOKEN_PREFIX +jwt);
+        System.out.println("Authentication successfull, here is your token \n" + jwt);
     }
 }
