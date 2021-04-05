@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.lang.Nullable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,5 +54,7 @@ public class Equipe {
     @Column(name = "EquipeImageBytes", nullable = true)
     private byte[] imageBytes;
 
+    @Nullable
+    private String base64image;
 
 }
