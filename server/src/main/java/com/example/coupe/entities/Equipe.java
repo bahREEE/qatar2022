@@ -46,5 +46,11 @@ public class Equipe {
     @JoinColumn(name="groupeId")
     private Groupe groupe;
     
+    @Column(name = "EquipeImagePath", nullable = false)
+    private String imagepath;
+
+    @Column(name = "EquipeImageBytes", nullable = true)
+    private byte[] imageBytes;
+
 
 }

@@ -19,7 +19,6 @@ public class MyByte {
         ByteArrayOutputStream baos=new ByteArrayOutputStream();
         ImageIO.write(originalImage, "PNG", baos );
         return baos.toByteArray();
-
     }
 
 }
