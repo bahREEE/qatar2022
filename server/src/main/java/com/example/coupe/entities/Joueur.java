@@ -34,8 +34,8 @@ public class Joueur extends MyUser {
     @Column(name = "imageBytes", nullable = true)
     private byte[] imageBytes;
 
-    @Column(name = "byte64image", nullable = false)
-    private String byte64;
+    @Column(name = "base64image", nullable = false)
+    private String base64;
 
     @ManyToOne
     @JoinColumn(name = "equipeId")
