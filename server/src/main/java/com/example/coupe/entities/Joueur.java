@@ -50,7 +50,7 @@ public Joueur() {
 }
 
 public Joueur(Long userId, String username, String password, String email, Instant creationDate, Boolean activated,
-    Collection<MyRole> roles, String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes,
+    Collection<MyRole> roles, String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, String base64,
     Equipe equipe) {
 super(userId, username, password, email, creationDate, activated, roles);
 this.jfirst = jfirst;
@@ -58,15 +58,17 @@ this.jlast = jlast;
 this.jnumber = jnumber;
 this.imagepath = imagepath;
 this.imageBytes = imageBytes;
+this.base64 = base64;
 this.equipe = equipe;
 }
 
-    public Joueur(String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, Equipe equipe) {
+    public Joueur(String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, String base64, Equipe equipe) {
         this.jfirst = jfirst;
         this.jlast = jlast;
         this.jnumber = jnumber;
         this.imagepath = imagepath;
         this.imageBytes = imageBytes;
+        this.base64 = base64;
         this.equipe = equipe;
     }
 
@@ -110,8 +112,20 @@ this.equipe = equipe;
         else return null;
     }
 
+    public String get64baseImage() throws IOException {
+        if(imagepath != "" && imagepath != null){
+            MyByte mb = new MyByte();
+            return mb.base64encode(this);
+        }
+        else return null;
+    }
+
     public void setImageBytes(byte[] imageBytes) {
         this.imageBytes = imageBytes;
+    }
+
+    public void setBase64(String base64){
+        this.base64 = base64;
     }
 
     public Equipe getEquipe() {

@@ -3,6 +3,7 @@ package com.example.coupe.Utilities;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
 
 import javax.imageio.ImageIO;
 
@@ -21,5 +22,9 @@ public class MyByte {
         return baos.toByteArray();
     }
 
-    
+    public String base64encode(Joueur j) throws IOException{
+        byte[] data = this.byteConversion(j);
+        return Base64.getEncoder().encodeToString(data);
+    }
+
 }
