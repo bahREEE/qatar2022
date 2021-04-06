@@ -55,7 +55,6 @@ public class JoueurController {
 
     @PostMapping(value = "/saveJoueur")
     public ResponseEntity<String> saveJoueur(@RequestBody Joueur j) {
-        j.setPassword(passwordEncoder.encode(j.getPassword()));
         joueurRepository.save(j);
         return new ResponseEntity<>("Joueur was saved successfully !", HttpStatus.OK);
     }
@@ -74,7 +73,6 @@ public class JoueurController {
 
     @PutMapping(value = "/updateJoueur/{id}")
     public ResponseEntity<String> updateJoueur(@PathVariable(name = "id") Long id, @RequestBody Joueur joueur) {
-        joueur.setUserId(id);
         joueurRepository.save(joueur);
         return new ResponseEntity<>("Joueur was updated successfully !", HttpStatus.OK);
     }

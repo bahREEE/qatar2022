@@ -1,11 +1,12 @@
 package com.example.coupe.entities;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,7 +17,11 @@ import com.example.coupe.Utilities.MyByte;
 
 @Entity
 @Table(name = "JoueurTBL")
-public class Joueur extends MyUser {
+public class Joueur {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long joueurId;
 
     @Column(name = "jfirst", nullable = false)
     private String jfirst;
@@ -41,28 +46,8 @@ public class Joueur extends MyUser {
     @JoinColumn(name = "equipeId")
     private Equipe equipe;
 
-    public Joueur(Long userId, String username, String password, String email, Instant creationDate, Boolean activated,
-    Collection<MyRole> roles) {
-super(userId, username, password, email, creationDate, activated, roles);
-}
-
-public Joueur() {
-}
-
-public Joueur(Long userId, String username, String password, String email, Instant creationDate, Boolean activated,
-    Collection<MyRole> roles, String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, String base64,
-    Equipe equipe) {
-super(userId, username, password, email, creationDate, activated, roles);
-this.jfirst = jfirst;
-this.jlast = jlast;
-this.jnumber = jnumber;
-this.imagepath = imagepath;
-this.imageBytes = imageBytes;
-this.base64 = base64;
-this.equipe = equipe;
-}
-
-    public Joueur(String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, String base64, Equipe equipe) {
+    public Joueur(Long id, String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, String base64, Equipe equipe) {
+        this.joueurId = id;
         this.jfirst = jfirst;
         this.jlast = jlast;
         this.jnumber = jnumber;
@@ -70,6 +55,14 @@ this.equipe = equipe;
         this.imageBytes = imageBytes;
         this.base64 = base64;
         this.equipe = equipe;
+    }
+
+    public Long getJoueurId(){
+        return joueurId;
+    }
+
+    public void setJoueurId(Long id){
+        this.joueurId = id;
     }
 
     public String getJfirst() {
@@ -107,7 +100,7 @@ this.equipe = equipe;
     public byte[] getImageBytes() throws IOException {
         if(imagepath != "" && imagepath != null){
             MyByte mb = new MyByte();
-            return mb.byteConversion(this);
+            return mb.byteConversion(this.getImagepath());
         }
         else return null;
     }
@@ -115,7 +108,7 @@ this.equipe = equipe;
     public String get64baseImage() throws IOException {
         if(imagepath != "" && imagepath != null){
             MyByte mb = new MyByte();
-            return mb.base64encode(this);
+            return mb.base64encode(this.getImagepath());
         }
         else return null;
     }
