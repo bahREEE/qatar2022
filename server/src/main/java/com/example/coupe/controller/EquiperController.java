@@ -37,6 +37,7 @@ public class EquiperController {
 
     @PostMapping(value="/saveEquipe")
     public ResponseEntity<String> addEquipe(@RequestBody Equipe e){
+        System.out.println(e.getGroupe().getGroupeId());
         equipeRepository.save(e);
         return new ResponseEntity<>("Equipe was added successfully !", HttpStatus.OK);
     }
