@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.lang.Nullable;
 
-import io.netty.handler.codec.compression.FastLzFrameEncoder;
 import lombok.NoArgsConstructor;
 
 @Entity
