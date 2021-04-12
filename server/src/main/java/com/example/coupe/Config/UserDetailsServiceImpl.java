@@ -1,7 +1,7 @@
 package com.example.coupe.Config;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 //import com.example.coupe.Services.AccountService;
 import com.example.coupe.dao.UserRepository;
@@ -30,9 +30,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         MyUser myuser = userRepository.findByUsername(username);
         if(myuser==null) throw new UsernameNotFoundException("User not found !!!");
         
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
         myuser.getRoles().forEach(r->{
-            authorities.add(new SimpleGrantedAuthority(r.getRoleName()));
+            authorities.add(new SimpleGrantedAuthority(r.getRoleName().name()));
         });
         System.out.println(myuser.getUsername());
         return new User(myuser.getUsername(), myuser.getPassword(), authorities);

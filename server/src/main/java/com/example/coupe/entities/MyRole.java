@@ -1,6 +1,8 @@
 package com.example.coupe.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +23,7 @@ public class MyRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 
-    private String roleName;
+    @Enumerated(EnumType.STRING)
+    private ERole roleName;
 
 }
