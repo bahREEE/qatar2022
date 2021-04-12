@@ -8,8 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,17 +26,17 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long matchId;
 
-/*
-    @Autowired
+    @OneToOne
+    @JoinColumn(name = "equipe1_id")
     private Equipe equipe1;
 
     private int e1goals;
 
-    @Autowired
+    @OneToOne
+    @JoinColumn(name = "equipe2_id")    
     private Equipe equipe2;
 
     private int e2goals;
-*/    
 
     private Date horaire;
 

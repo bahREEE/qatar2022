@@ -31,6 +31,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(myuser==null) throw new UsernameNotFoundException("User not found !!!");
         
         List<GrantedAuthority> authorities = new ArrayList<>();
+        System.out.println(myuser.getRoles());
+        System.out.println("-------------------------------------------------");
         myuser.getRoles().forEach(r->{
             authorities.add(new SimpleGrantedAuthority(r.getRoleName().name()));
         });

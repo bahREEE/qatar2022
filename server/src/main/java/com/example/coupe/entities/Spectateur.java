@@ -1,7 +1,7 @@
 package com.example.coupe.entities;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -23,7 +23,7 @@ public class Spectateur extends MyUser {
     private String spectateurEmail;
 
     public Spectateur(Long userId, String username, String password, String email, Instant creationDate,
-            Boolean activated, Set<MyRole> roles) {
+            Boolean activated, List<MyRole> roles) {
         super(userId, username, password, email, creationDate, activated, roles);
     }
 
@@ -31,7 +31,7 @@ public class Spectateur extends MyUser {
     }
 
     public Spectateur(Long userId, String username, String password, String email, Instant creationDate,
-            Boolean activated, Set<MyRole> roles, String spectateurUsername, String spectateurFirstName,
+            Boolean activated, List<MyRole> roles, String spectateurUsername, String spectateurFirstName,
             String spectateurlastName, String spectateuraddress, @Email String spectateurEmail) {
         super(userId, username, password, email, creationDate, activated, roles);
         this.spectateurUsername = spectateurUsername;
