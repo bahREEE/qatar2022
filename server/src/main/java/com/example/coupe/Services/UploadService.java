@@ -12,7 +12,7 @@ public class UploadService {
 
 	public void saveImage(MultipartFile imageFile) throws Exception{
 
-        String folder = "C:/Users/baRi/Pictures/mounir/";
+        String folder = "";
         byte[] bytes = imageFile.getBytes();
         Path path = Paths.get(folder + imageFile.getOriginalFilename());
         Files.write(path, bytes);
