@@ -12,5 +12,6 @@ public class RegisterRequest {
     private String confirmedPassword;
     @Email
     private String email;
+    private String role;
 
 }

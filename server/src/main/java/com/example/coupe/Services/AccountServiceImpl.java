@@ -1,8 +1,11 @@
 package com.example.coupe.Services;
 
+import com.example.coupe.entities.ERole;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.coupe.dao.RoleRepository;
 import com.example.coupe.dao.UserRepository;
@@ -26,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
     private RoleRepository roleRepository;
  
     @Override
-    public MyUser saveUser(String username, String password, String confirmedPassword, String email, Instant creationDate, Boolean activated) {
+    public MyUser saveUser(String username, String password, String confirmedPassword, String email, Instant creationDate, Boolean activated,String role) {
         MyUser user = userRepository.findByUsername(username);
         if(user != null) throw new RuntimeException("This user already exists !!!");
         if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
@@ -36,27 +39,24 @@ public class AccountServiceImpl implements AccountService {
         newUser.setEmail(email);
         newUser.setCreationDate(Instant.now());
         newUser.setActivated(true);
+        addRoleToUser(newUser,role);
         userRepository.save(newUser);
-        addRoleToUser(username,"USER");
         return newUser;
     }
 
-    @Override
-    public MyRole save(MyRole role) {
-        return roleRepository.save(role);
-    }
+
 
     @Override
-    public MyUser loadUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
+    public void addRoleToUser(MyUser user, String role) {
+        List<MyRole>roles=new ArrayList<>();
+        switch (role){
+            case "user":roles.add(roleRepository.findByroleName(ERole.ROLE_USER));
+            case"admin":roles.add(roleRepository.findByroleName(ERole.ROLE_ADMIN));
+            default: new RuntimeException("Error: Role not found!");
 
-    @Override
-    public void addRoleToUser(String username, String rolename) {
-        MyUser user = userRepository.findByUsername(username);
-        MyRole role = roleRepository.findByroleName(rolename);
+        }
 
-        user.getRoles().add(role);
+        user.setRoles(roles);
     }
 
 

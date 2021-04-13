@@ -22,7 +22,7 @@ public class RegisterController {
     public String register(@RequestBody RegisterRequest registerRequest){
 
          accountService.saveUser(registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getConfirmedPassword(), registerRequest.getEmail(), 
-                                Instant.now(), false);
+                                Instant.now(), false,registerRequest.getRole());
 
                                 return "User signed up successfully !";
     }
