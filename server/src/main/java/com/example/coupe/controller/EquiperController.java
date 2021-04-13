@@ -1,9 +1,12 @@
 package com.example.coupe.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import com.example.coupe.dao.EquipeRepository;
+import com.example.coupe.dao.GroupeRepository;
 import com.example.coupe.entities.Equipe;
+import com.example.coupe.entities.Groupe;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +25,20 @@ public class EquiperController {
     
     @Autowired
     private EquipeRepository equipeRepository;
+    @Autowired
+    private GroupeRepository groupeRepository;
 
 
     @GetMapping(value = "/equipes")
     public List<Equipe> getAllEquipe() {
 
         return equipeRepository.findAll();
+    }
+
+    @GetMapping(value = "/groupeEquipes/{id}")
+    public Set<Equipe> getEquipesGroupe(@PathVariable Long id){
+        Groupe g = groupeRepository.findById(id).orElseThrow();
+        return g.getEquipes();
     }
 
     @GetMapping(value = "/equipe/{id}")

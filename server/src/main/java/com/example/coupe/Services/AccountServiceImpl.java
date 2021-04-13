@@ -44,8 +44,6 @@ public class AccountServiceImpl implements AccountService {
         return newUser;
     }
 
-
-
     @Override
     public void addRoleToUser(MyUser user, String role) {
         List<MyRole>roles=new ArrayList<>();
@@ -54,7 +52,10 @@ public class AccountServiceImpl implements AccountService {
             case"admin":roles.add(roleRepository.findByroleName(ERole.ROLE_ADMIN));
             default: new RuntimeException("Error: Role not found!");
 
-        }
+        
+    }
+
+
 
         user.setRoles(roles);
     }

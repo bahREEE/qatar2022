@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import com.example.coupe.Utilities.MyByte;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.springframework.lang.Nullable;
-
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -50,11 +48,7 @@ public class Equipe {
     @Column(name = "EquipeImagePath", nullable = false)
     private String imagepath;
 
-    @JsonIgnore
-    @Column(name = "EquipeImageBytes", nullable = true)
-    private byte[] imageBytes;
-
-    @Nullable
+    @Column(name = "base64image")
     private String base64image;
 
     public Long getEquipeId() {
@@ -111,18 +105,6 @@ public class Equipe {
 
     public void setImagepath(String imagepath) {
         this.imagepath = imagepath;
-    }
-
-    public byte[] getImageBytes() throws IOException {
-        if(imagepath != "" && imagepath != null){
-            MyByte mb = new MyByte();
-            return mb.byteConversion(this.getImagepath());
-        }
-        else return null;
-    }
-
-    public void setImageBytes(byte[] imageBytes) {
-        this.imageBytes = imageBytes;
     }
 
     public String getBase64image() throws IOException {

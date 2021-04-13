@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.example.coupe.Utilities.MyByte;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,12 +33,9 @@ public class Joueur {
     @Column(name = "jnumber", nullable = false)
     private int jnumber;
 
-    // @JsonIgnore
+    @JsonIgnore
     @Column(name = "imagepath", nullable = false)
     private String imagepath;
-
-    @Column(name = "imageBytes", nullable = true)
-    private byte[] imageBytes;
 
     @Column(name = "base64image", nullable = false)
     private String base64;
@@ -46,13 +44,12 @@ public class Joueur {
     @JoinColumn(name = "equipeId")
     private Equipe equipe;
 
-    public Joueur(Long id, String jfirst, String jlast, int jnumber, String imagepath, byte[] imageBytes, String base64, Equipe equipe) {
+    public Joueur(Long id, String jfirst, String jlast, int jnumber, String imagepath, String base64, Equipe equipe) {
         this.joueurId = id;
         this.jfirst = jfirst;
         this.jlast = jlast;
         this.jnumber = jnumber;
         this.imagepath = imagepath;
-        this.imageBytes = imageBytes;
         this.base64 = base64;
         this.equipe = equipe;
     }
@@ -97,13 +94,7 @@ public class Joueur {
         this.imagepath = imagepath;
     }
 
-    public byte[] getImageBytes() throws IOException {
-        if(imagepath != "" && imagepath != null){
-            MyByte mb = new MyByte();
-            return mb.byteConversion(this.getImagepath());
-        }
-        else return null;
-    }
+
 
     public String get64baseImage() throws IOException {
         if(imagepath != "" && imagepath != null){
@@ -111,10 +102,6 @@ public class Joueur {
             return mb.base64encode(this.getImagepath());
         }
         else return null;
-    }
-
-    public void setImageBytes(byte[] imageBytes) {
-        this.imageBytes = imageBytes;
     }
 
     public void setBase64(String base64){
@@ -131,5 +118,4 @@ public class Joueur {
 
 
     
-
 }

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.example.coupe.dto.ResponseRequest;
 import com.example.coupe.entities.MyUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

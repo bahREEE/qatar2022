@@ -1,6 +1,6 @@
 package com.example.coupe.entities;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +30,6 @@ public class Groupe {
 
     @OneToMany(mappedBy = "groupe")
     @JsonIgnore
-    private Collection<Equipe> equipes;
+    private Set<Equipe> equipes;
 
 }

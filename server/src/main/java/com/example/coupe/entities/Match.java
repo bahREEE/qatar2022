@@ -46,7 +46,7 @@ public class Match {
 
     private String Terrain;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "matchId", insertable = false, updatable = false)
     private Arbitre arbitre;
 
