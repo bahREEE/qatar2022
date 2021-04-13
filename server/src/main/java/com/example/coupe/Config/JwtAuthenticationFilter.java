@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.example.coupe.dao.UserRepository;
 import com.example.coupe.entities.MyUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,6 +39,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.authenticationManager = authenticationManager;
     }
     
+    @Autowired
+    UserRepository userRep;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -65,6 +69,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                     .withExpiresAt(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
                     .sign(Algorithm.HMAC512(SECRET.getBytes()));
         response.addHeader(HEADER_STRING, TOKEN_PREFIX +jwt);
-
+      //  System.out.println("-------"+userRep.findByUsername("bahri"));
+      //  response.getWriter().print(new AuthenticationResponse(user.getUsername(), jwt));
     }
+
+
 }
