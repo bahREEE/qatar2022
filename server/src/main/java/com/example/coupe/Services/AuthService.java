@@ -27,10 +27,11 @@ public class AuthService {
 
     public AuthenticationResponse login(User user){
 
+
+
         
         String jwt = JWT.create()
                     .withSubject(user.getUsername())
-                    .withArrayClaim("roles", user.getAuthorities().toArray(new String[user.getAuthorities().size()]))
                     .withExpiresAt(new Date(System.currentTimeMillis()+EXPIRATION_TIME))
                     .sign(Algorithm.HMAC512(SECRET.getBytes()));
                     

@@ -1,5 +1,6 @@
 package com.example.coupe.controller;
 
+import com.example.coupe.Config.UserDetailsServiceImpl;
 import com.example.coupe.Services.AuthService;
 import com.example.coupe.dto.AuthenticationResponse;
 import com.example.coupe.dto.LoginRequest;
@@ -12,15 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-/*import com.example.coupe.Services.AuthService;
-import com.example.coupe.dao.UserRepository;
-import com.example.coupe.dto.AuthenticationResponse;
-import com.example.coupe.dto.LoginRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-*/
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -32,14 +24,16 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private UserDetailsServiceImpl userDetails;
 
    @PostMapping(value = "/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest){
         
       Authentication authenticate =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-      User user = (User) authenticate.getPrincipal();
+      User user = (User) userDetails.loadUserByUsername(loginRequest.getUsername());
        SecurityContextHolder.getContext().setAuthentication(authenticate);
-
+       System.out.println(user.getAuthorities());
         return authService.login(user);
   
     }

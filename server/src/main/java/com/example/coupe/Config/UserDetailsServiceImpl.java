@@ -31,14 +31,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(myuser==null) throw new UsernameNotFoundException("User not found !!!");
         
         List<GrantedAuthority> authorities = new ArrayList<>();
-      //System.out.println(myuser.getRoles());
-        //System.out.println("-------------------------------------------------");
+     //   System.out.println(myuser.getRoles());
         myuser.getRoles().forEach(r->{
-          //  System.out.println(r.getRoleName());
+
             authorities.add(new SimpleGrantedAuthority(r.getRoleName().toString()));
-          
+           // System.out.println(authorities.get(0));
         });
-      //  System.out.println(authorities.get(0));
+      //  System.out.println(authorities);
         return new User(myuser.getUsername(), myuser.getPassword(), authorities);
     }
     
