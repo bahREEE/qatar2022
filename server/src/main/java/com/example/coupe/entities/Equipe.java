@@ -14,14 +14,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.coupe.Utilities.MyByte;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "EquipeTBL")
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Equipe {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +39,7 @@ public class Equipe {
     private int classementMondial;
 
     @OneToMany(mappedBy = "equipe")
-    @JsonIgnore
+    @JsonManagedReference
     private List<Joueur> listJoueurs;
 
     @ManyToOne

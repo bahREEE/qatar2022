@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,5 +28,6 @@ public class Arbitre {
     private String arbitreNom;
 
     @OneToMany(mappedBy = "arbitre", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Match> matches;
 }

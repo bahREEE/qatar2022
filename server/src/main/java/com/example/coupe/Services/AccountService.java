@@ -2,7 +2,6 @@ package com.example.coupe.Services;
 
 import java.time.Instant;
 
-import com.example.coupe.entities.MyRole;
 import com.example.coupe.entities.MyUser;
 
 public interface AccountService {

@@ -12,16 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.example.coupe.Utilities.MyByte;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "JoueurTBL")
 public class Joueur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long joueurId;
 
     @Column(name = "jfirst", nullable = false)
@@ -33,26 +37,17 @@ public class Joueur {
     @Column(name = "jnumber", nullable = false)
     private int jnumber;
 
-    @JsonIgnore
     @Column(name = "imagepath", nullable = false)
     private String imagepath;
 
-    @Column(name = "base64image", nullable = false)
+    @Column(name = "base64image")
     private String base64;
 
     @ManyToOne
     @JoinColumn(name = "equipeId")
+    @JsonBackReference
     private Equipe equipe;
 
-    public Joueur(Long id, String jfirst, String jlast, int jnumber, String imagepath, String base64, Equipe equipe) {
-        this.joueurId = id;
-        this.jfirst = jfirst;
-        this.jlast = jlast;
-        this.jnumber = jnumber;
-        this.imagepath = imagepath;
-        this.base64 = base64;
-        this.equipe = equipe;
-    }
 
     public Long getJoueurId(){
         return joueurId;

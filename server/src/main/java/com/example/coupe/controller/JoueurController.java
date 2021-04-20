@@ -69,6 +69,7 @@ public class JoueurController {
 
     @PutMapping(value = "/updateJoueur/{id}")
     public ResponseEntity<String> updateJoueur(@PathVariable(name = "id") Long id, @RequestBody Joueur joueur) {
+        joueur.setJoueurId(id);
         joueurRepository.save(joueur);
         return new ResponseEntity<>("Joueur was updated successfully !", HttpStatus.OK);
     }

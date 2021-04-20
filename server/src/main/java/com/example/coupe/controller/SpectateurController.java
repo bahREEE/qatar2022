@@ -55,7 +55,7 @@ public class SpectateurController {
     @PutMapping(value = "/updateSpectator/{id}")
     public ResponseEntity<String> updateSpectator(@PathVariable(name = "id") Long id,
             @RequestBody Spectateur spectateur) {
-        spectateur.setUserId(id);
+        spectateur.setSpectateurId(id);
         spectateurRepository.save(spectateur);
         return new ResponseEntity<>("Spectator was updated successfully !", HttpStatus.OK);
     }

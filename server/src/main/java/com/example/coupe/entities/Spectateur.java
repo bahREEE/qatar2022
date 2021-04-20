@@ -1,15 +1,26 @@
 package com.example.coupe.entities;
 
-import java.time.Instant;
-import java.util.List;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "SpectateurTBL")
-public class Spectateur extends MyUser {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Spectateur{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long spectateurId;
 
     private String spectateurUsername;
 
@@ -22,76 +33,7 @@ public class Spectateur extends MyUser {
     @Email
     private String spectateurEmail;
 
-    public Spectateur(Long userId, String username, String password, String email, Instant creationDate,
-            Boolean activated, List<MyRole> roles) {
-        super(userId, username, password, email, creationDate, activated, roles);
-    }
-
-    public Spectateur() {
-    }
-
-    public Spectateur(Long userId, String username, String password, String email, Instant creationDate,
-            Boolean activated, List<MyRole> roles, String spectateurUsername, String spectateurFirstName,
-            String spectateurlastName, String spectateuraddress, @Email String spectateurEmail) {
-        super(userId, username, password, email, creationDate, activated, roles);
-        this.spectateurUsername = spectateurUsername;
-        this.spectateurFirstName = spectateurFirstName;
-        this.spectateurlastName = spectateurlastName;
-        this.spectateuraddress = spectateuraddress;
-        this.spectateurEmail = spectateurEmail;
-    }
-
-    public Spectateur(String spectateurUsername, String spectateurFirstName, String spectateurlastName,
-            String spectateuraddress, @Email String spectateurEmail) {
-        this.spectateurUsername = spectateurUsername;
-        this.spectateurFirstName = spectateurFirstName;
-        this.spectateurlastName = spectateurlastName;
-        this.spectateuraddress = spectateuraddress;
-        this.spectateurEmail = spectateurEmail;
-    }
-
-    public String getSpectateurUsername() {
-        return spectateurUsername;
-    }
-
-    public void setSpectateurUsername(String spectateurUsername) {
-        this.spectateurUsername = spectateurUsername;
-    }
-
-    public String getSpectateurFirstName() {
-        return spectateurFirstName;
-    }
-
-    public void setSpectateurFirstName(String spectateurFirstName) {
-        this.spectateurFirstName = spectateurFirstName;
-    }
-
-    public String getSpectateurlastName() {
-        return spectateurlastName;
-    }
-
-    public void setSpectateurlastName(String spectateurlastName) {
-        this.spectateurlastName = spectateurlastName;
-    }
-
-    public String getSpectateuraddress() {
-        return spectateuraddress;
-    }
-
-    public void setSpectateuraddress(String spectateuraddress) {
-        this.spectateuraddress = spectateuraddress;
-    }
-
-    public String getSpectateurEmail() {
-        return spectateurEmail;
-    }
-
-    public void setSpectateurEmail(String spectateurEmail) {
-        this.spectateurEmail = spectateurEmail;
-    }
-
- 
-       
+   
 
 
 }

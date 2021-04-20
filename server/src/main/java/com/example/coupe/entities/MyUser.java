@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -25,7 +23,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,8 +34,8 @@ import lombok.NoArgsConstructor;
 public class MyUser {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-	protected Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
     @NotBlank(message = "The username field is required")
     @Column(unique = true)
     private String username;
