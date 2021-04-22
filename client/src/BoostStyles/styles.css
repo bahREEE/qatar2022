@@ -9,3 +9,7 @@
 .mb-lg {
   margin-bottom: 6rem;
 }
+
+.elem-center {
+  margin: 0 auto;
+}

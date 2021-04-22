@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import Navbar from "./Components/Navbar/Navbar";
-import Landing from "./Components/Landing/Landing";
-import Footer from "./Components/Footer/Footer";
-import Signup from "./Components/Signup/Signup";
-import Login from "./Pages/Login/Login";
 import { Switch, Route, Redirect } from "react-router-dom";
+import Login from "./Pages/Login/Login";
 import Notification from "./Components/notifications/Notifications";
 import Cross from "./assets/svgs/Cross";
 import Check from "./assets/svgs/Check";
 import Info from "./assets/svgs/info";
 import "./BoostStyles/styles.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Games from "./Pages/Matches/Games";
 
 const App = () => {
   const [render, setRender] = useState(false);
@@ -73,7 +69,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar />
       <Switch>
         <Route
           path="/login"
@@ -82,11 +77,9 @@ const App = () => {
             <Login props={props} setNotification={setNotification} />
           )}
         />
-        <Route exact path="/" exact component={Landing} />
-        <Route path="/signup" exact component={Signup} />
-        <Redirect to="/" />
+        <Route path="/games" component={Games} />
+        <Redirect to="/login" />
       </Switch>
-      <Footer />
       {render && <Notification informations={informations} />}
     </div>
   );

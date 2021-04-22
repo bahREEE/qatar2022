@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Footsvg from "../../assets/svgs/Footsvg";
 import Keysvg from "../../assets/svgs/Keysvg";
 import Usersvg from "../../assets/svgs/Usersvg";
+import Button from "../../Components/Button/Button";
 import LoginInput from "../../Components/Inputs/LoginInput";
-
 import "./login.css";
 
 const Login = ({ setNotification }) => {
@@ -45,8 +45,7 @@ const Login = ({ setNotification }) => {
   return (
     <div className="login__bg">
       <div className="login__container" onSubmit={(e) => Submit(e)}>
-        <Footsvg />
-
+        <Footsvg className="login__logo-icon" />
         <form className="login__form">
           <LoginInput
             name="username"
@@ -58,7 +57,7 @@ const Login = ({ setNotification }) => {
             autoFocus
             errorInput={errorsInputs.username}
           >
-            <Usersvg />
+            <Usersvg className="input__icon" />
           </LoginInput>
           <LoginInput
             name="password"
@@ -69,13 +68,12 @@ const Login = ({ setNotification }) => {
             errorInput={errorsInputs.password}
             changeUser={changeUser}
           >
-            <Keysvg />
+            <Keysvg className="input__icon" />
           </LoginInput>
+          <div className="elem-center">
+            <Button type="submit" text="Login" />
+          </div>
         </form>
-
-        <Link to="/" className="login__btn" onClick={(e) => Submit(e)}>
-          Login
-        </Link>
       </div>
     </div>
   );

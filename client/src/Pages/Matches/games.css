@@ -1,0 +1,14 @@
+.games {
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url(../../assets/Images/games.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.games__title {
+  padding: 8rem 0rem;
+  text-align: center;
+  font-size: 3rem;
+}
