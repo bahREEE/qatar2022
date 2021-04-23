@@ -8,6 +8,7 @@ import Info from "./assets/svgs/info";
 import "./BoostStyles/styles.css";
 import "./App.css";
 import Games from "./Pages/Matches/Games";
+import Team from "./Pages/Team/Team";
 
 const App = () => {
   const [render, setRender] = useState(false);
@@ -78,6 +79,7 @@ const App = () => {
           )}
         />
         <Route path="/games" component={Games} />
+        <Route path="/team" component={Team} />
         <Redirect to="/login" />
       </Switch>
       {render && <Notification informations={informations} />}

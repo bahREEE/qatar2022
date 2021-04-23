@@ -36,11 +36,14 @@ public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
+
     @NotBlank(message = "The username field is required")
     @Column(unique = true)
     private String username;
+
     @NotBlank(message = "The password field is required")
     private String password;
+
     @Email
     @NotEmpty(message = "An email is required")
     private String email;

@@ -2,14 +2,7 @@ package com.example.coupe.entities;
 
 import java.io.IOException;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.example.coupe.Utilities.MyByte;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -33,6 +26,10 @@ public class Joueur {
 
     @Column(name = "jlast", nullable = false)
     private String jlast;
+
+    @Column(name = "position", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Position position;
 
     @Column(name = "jnumber", nullable = false)
     private int jnumber;
@@ -89,7 +86,13 @@ public class Joueur {
         this.imagepath = imagepath;
     }
 
+    public Position getPosition() {
+        return position;
+    }
 
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     public String get64baseImage() throws IOException {
         if(imagepath != "" && imagepath != null){
