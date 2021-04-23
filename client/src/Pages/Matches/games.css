@@ -1,14 +1,60 @@
 .games {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-image: url(../../assets/Images/games.jpg);
   background-size: cover;
-  background-repeat: no-repeat;
   color: white;
 }
 
 .games__title {
-  padding: 8rem 0rem;
+  padding: 4rem 0rem;
   text-align: center;
   font-size: 3rem;
+}
+
+.games__list {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.games__item {
+  padding: 1rem 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  animation: fadeUp 1s;
+}
+
+.games__item:not(:last-child) {
+  margin-bottom: 4rem;
+}
+
+.games__team {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.games__team:hover {
+  transform: scale(1.1);
+}
+
+.games__team--name {
+  flex: 60%;
+  font-size: 2rem;
+  text-align: center;
+}
+.games__team--img {
+  width: 20rem;
+}
+
+.games__vs {
+  color: red;
+  font-size: 3rem;
+  font-weight: 900;
 }

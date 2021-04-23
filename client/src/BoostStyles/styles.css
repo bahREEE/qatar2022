@@ -13,3 +13,15 @@
 .elem-center {
   margin: 0 auto;
 }
+
+@keyframes fadeUp {
+  0% {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+}
