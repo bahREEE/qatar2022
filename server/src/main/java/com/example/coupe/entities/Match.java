@@ -2,6 +2,7 @@ package com.example.coupe.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,8 @@ import lombok.NoArgsConstructor;
 public class Match {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", insertable = false, updatable = false)
     private Long matchId;
 
     @OneToOne
@@ -46,10 +48,10 @@ public class Match {
 
     private Boolean matchPlayoffs;
 
-    private String Terrain;
+    private String terrain;
 
     @ManyToOne
-    @JoinColumn(name = "matchId", insertable = false, updatable = false)
+    @JoinColumn(name = "matchId", nullable = false)
     @JsonBackReference
     private Arbitre arbitre;
 

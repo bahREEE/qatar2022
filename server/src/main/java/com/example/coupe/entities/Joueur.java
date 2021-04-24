@@ -27,7 +27,7 @@ public class Joueur {
     @Column(name = "jlast", nullable = false)
     private String jlast;
 
-    @Column(name = "position", nullable = false)
+    @Column(name = "position")
     @Enumerated(EnumType.STRING)
     private Position position;
 
