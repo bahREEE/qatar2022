@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Arbitre {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long arbitreId;
 
     private String arbitreNom;
@@ -30,4 +30,8 @@ public class Arbitre {
     @OneToMany(mappedBy = "arbitre", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Match> matches;
+
+    public void addmatch(Match m){
+        this.matches.add(m);
+    }
 }

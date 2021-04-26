@@ -1,5 +1,7 @@
 package com.example.coupe.controller;
 
+import java.util.List;
+
 import com.example.coupe.dao.ArbitreRepository;
 import com.example.coupe.entities.Arbitre;
 
@@ -12,35 +14,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/arbitres")
 public class ArbitreController {
     
     @Autowired
     private ArbitreRepository arbitreRepository;
 
 
-    @GetMapping(value = "/arbitres")
-    public ResponseEntity<String> getarbitres(){
-        arbitreRepository.findAll();
-        return new ResponseEntity<>("Success !", HttpStatus.OK);
+    @GetMapping(value = "/")
+    public List<Arbitre> getarbitres(){
+        return arbitreRepository.findAll();
     }
 
-    @GetMapping(value = "/arbitre/{id}")
-    public ResponseEntity<String> getarbtire(@PathVariable Long id){
-        arbitreRepository.findById(id);
-        return new ResponseEntity<>("Success !", HttpStatus.OK);
+    @GetMapping(value = "/{id}")
+    public Arbitre getarbtire(@PathVariable Long id){
+        return arbitreRepository.findById(id).orElseThrow();
     }
 
-    @PostMapping(value = "/savearbitre")
+    @PostMapping(value = "/")
     public ResponseEntity<String> ajoutarbitre(@RequestBody Arbitre arbitre){
         arbitreRepository.save(arbitre);
         return new ResponseEntity<>("Arbitre added successfully !", HttpStatus.OK);
     }
 
-
-    @PutMapping(value = "/updatearbitre/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<String> modifarbitre(@RequestBody Arbitre arbitre,@PathVariable(name="id") Long id){
         arbitre.setArbitreId(id);
         arbitreRepository.save(arbitre);       
@@ -48,13 +49,13 @@ public class ArbitreController {
     }
 
 
-    @DeleteMapping(value = "/deletearbitre/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> supparbitre(@PathVariable Long id){
         arbitreRepository.deleteById(id);
         return new ResponseEntity<>("Arbitre deleted successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/deleteallarbitres")
+    @DeleteMapping(value = "/")
     public ResponseEntity<String> suppallarbitres(){
         arbitreRepository.deleteAll();
         return new ResponseEntity<>("All arbitres deleted successfully !", HttpStatus.OK);
