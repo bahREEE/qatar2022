@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/login/**","/signup/**").permitAll()
         .anyRequest().permitAll()
         .and()
-         .addFilter(new JwtAuthorizationFilter(authenticationManager()))
+        //.addFilter(new JwtAuthorizationFilter(authenticationManager()))
         // this disables session creation on Spring Security
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

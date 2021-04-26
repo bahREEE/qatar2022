@@ -39,6 +39,10 @@ public class MatchController {
 
     @PostMapping("/")
     public Match addmatch(@RequestBody Match match){
+        Arbitre a = new Arbitre();
+        a = arbitreRepository.findById(match.getArbitre().getArbitreId()).orElseThrow();
+        a.addmatch(match);
+        arbitreRepository.save(a);
         return matchRepository.save(match);
     }
 
