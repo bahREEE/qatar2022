@@ -1,5 +1,6 @@
 package com.example.coupe.controller;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import com.example.coupe.entities.MyUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,16 +36,17 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-
     @Autowired
     private RoleRepository roleRepository;
 
     @GetMapping(value = "/")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<MyUser> getusers(){
         return userRepository.findAll();
     }
 
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public MyUser getUser(@PathVariable Long id){
         return userRepository.findById(id).orElseThrow();
     }
@@ -53,14 +57,16 @@ public class UserController {
         MyUser newUser = new MyUser();
         newUser.setUsername((user.getUsername()));
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setEmail(user.getEmail());
+        newUser.setCreationDate(Instant.now());
         addRoleToUser(newUser,user.getRole());
-        userRepository.save(newUser);
+        userRepository.save(newUser);       
         return new ResponseEntity<>("User added successfully", HttpStatus.OK);
     }
 
-    @PutMapping(value = "/")
-    public ResponseEntity<String> updateuser( @RequestBody MyUser user){
-       // user.setId(id);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<String> updateuser(@PathVariable(name = "id") Long id, @RequestBody MyUser user){
+        user.setUserId(id);
         userRepository.save(user);
         return new ResponseEntity<>("User updated successfully !", HttpStatus.OK);
     }

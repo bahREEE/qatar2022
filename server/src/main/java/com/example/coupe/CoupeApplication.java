@@ -10,8 +10,6 @@ public class CoupeApplication implements CommandLineRunner {
 //@Autowired
 //private RoleRepository roleRepository;
 
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(CoupeApplication.class, args);
 	}

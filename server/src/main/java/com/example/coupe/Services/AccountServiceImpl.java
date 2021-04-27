@@ -38,7 +38,6 @@ public class AccountServiceImpl implements AccountService {
         newUser.setPassword(passwordEncoder.encode(password));
         newUser.setEmail(email);
         newUser.setCreationDate(Instant.now());
-        newUser.setActivated(true);
         addRoleToUser(newUser,role);
         userRepository.save(newUser);
         return newUser;
@@ -50,7 +49,7 @@ public class AccountServiceImpl implements AccountService {
         switch (role){
             case "ROLE_USER":roles.add(roleRepository.findByroleName(ERole.ROLE_USER));
             break;
-            case"ROLER_ADMIN":roles.add(roleRepository.findByroleName(ERole.ROLE_ADMIN));
+            case "ROLE_ADMIN":roles.add(roleRepository.findByroleName(ERole.ROLE_ADMIN));
             break;
             default: new RuntimeException("Error: Role not found!");
 

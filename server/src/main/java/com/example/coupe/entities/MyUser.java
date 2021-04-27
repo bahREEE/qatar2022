@@ -47,8 +47,8 @@ public class MyUser {
     @Email
     @NotEmpty(message = "An email is required")
     private String email;
+
     private Instant creationDate;
-    private Boolean activated;
 
     @ManyToMany
     @JoinTable(	name = "user_roles", 
