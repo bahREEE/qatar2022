@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -95,9 +96,12 @@ public class Joueur {
     }
 
     public String get64baseImage() throws IOException {
+
         if(imagepath != "" && imagepath != null){
+
             MyByte mb = new MyByte();
             return mb.base64encode(this.getImagepath());
+
         }
         else return null;
     }
