@@ -3,9 +3,7 @@ package com.example.coupe.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.coupe.dao.ArbitreRepository;
 import com.example.coupe.dao.MatchRepository;
-import com.example.coupe.entities.Arbitre;
 import com.example.coupe.entities.Match;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +22,6 @@ public class MatchController {
     @Autowired
     private MatchRepository matchRepository;
 
-    @Autowired
-    private ArbitreRepository arbitreRepository;
 
     @GetMapping("/")
     public List<Match> getmatches(){
@@ -39,10 +35,7 @@ public class MatchController {
 
     @PostMapping("/")
     public Match addmatch(@RequestBody Match match){
-        Arbitre a = new Arbitre();
-        a = arbitreRepository.findById(match.getArbitre().getArbitreId()).orElseThrow();
-        a.addmatch(match);
-        arbitreRepository.save(a);
+        System.out.println(match.getEquipe1());
         return matchRepository.save(match);
     }
 

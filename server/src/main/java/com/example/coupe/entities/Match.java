@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class Match {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", insertable = false, updatable = false)
     private Long matchId;
 

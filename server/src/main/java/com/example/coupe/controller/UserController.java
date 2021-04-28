@@ -51,6 +51,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> addUser(@RequestBody UserRequest user){
         System.out.println(user.getRole());
         MyUser newUser = new MyUser();
@@ -64,6 +65,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> updateuser(@PathVariable(name = "id") Long id, @RequestBody MyUser user){
         user.setUserId(id);
         userRepository.save(user);
@@ -71,12 +73,14 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteallusers(){
         userRepository.deleteAll();
         return new ResponseEntity<>("All users deleted successfully", HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteauser(@PathVariable Long id){
         userRepository.deleteById(id);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);

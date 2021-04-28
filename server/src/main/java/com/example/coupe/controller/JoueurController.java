@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping("/joueurs")
 public class JoueurController {
 
     @Autowired
@@ -30,49 +32,49 @@ public class JoueurController {
     @Autowired
     private EquipeRepository equipeRepository;
 
-    @GetMapping(value = "/joueurs")
+    @GetMapping(value = "/")
     public List<Joueur> listJoueurs() {
         return joueurRepository.findAll();
     }
 
-    @GetMapping(value = "/joueursEquipe/{id}")
+    @GetMapping(value = "/equipe/{id}")
     public List<Joueur> getJoueursEquipe(@PathVariable Long id){
         Equipe equipe = equipeRepository.findById(id).orElseThrow();
-        return joueurRepository.findByEquipe(equipe);
+        System.out.println(equipe.getListJoueurs().size());
+        return equipe.getListJoueurs();
             
     }
 
-    @GetMapping(value = "/joueur/{id}")
+    @GetMapping(value = "/{id}")
     public Joueur getJoueur(@PathVariable Long id) throws IOException {
         
         return joueurRepository.findById(id).orElseThrow();
       
     }
 
-    @PostMapping(value = "/saveJoueur")
+    @PostMapping(value = "/")
     public ResponseEntity<String> saveJoueur(@RequestBody Joueur j) {
         joueurRepository.save(j);
         return new ResponseEntity<>("Joueur was saved successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/deleteAllJoueurs")
+    @PutMapping(value = "/{id}")
+    public Joueur updatejoueur(@PathVariable(name = "id") Long id, @RequestBody Joueur joueur){
+        joueur.setJoueurId(id);
+        joueurRepository.save(joueur);
+        return joueur;
+    }
+
+    @DeleteMapping(value = "/")
     public ResponseEntity<String> deleteJoueurs() {
         joueurRepository.deleteAll();
         return new ResponseEntity<>("All joueurs were deleted successfully !", HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/deleteJoueur/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> deleteAjoueur(@PathVariable Long id) {
         joueurRepository.deleteById(id);
         return new ResponseEntity<>("Joueur was deleted successfully !", HttpStatus.OK);
     }
-
-    @PutMapping(value = "/updateJoueur/{id}")
-    public ResponseEntity<String> updateJoueur(@PathVariable(name = "id") Long id, @RequestBody Joueur joueur) {
-        joueur.setJoueurId(id);
-        joueurRepository.save(joueur);
-        return new ResponseEntity<>("Joueur was updated successfully !", HttpStatus.OK);
-    }
-
 
 }
