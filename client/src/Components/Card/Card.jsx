@@ -1,17 +1,20 @@
 import React from "react";
-import messi from "../../assets/Images/messi.png";
 import "./card.css";
 
-const Card = ({ className }) => {
+const Card = ({ className, joueur }) => {
   return (
     <card className={className}>
       <div className="card__fisrt player">
-        <img src={messi} alt="player__photo" className="player__img" />
+        <img
+          src={`data:image/png;base64,${joueur && joueur["64baseImage"]}`}
+          alt="player__photo"
+          className="player__img"
+        />
       </div>
       <div className="card__second player">
         <div className="player__container">
-          <span className="player__name">Lionnel Messi</span>
-          <p className="player__number">- 10 -</p>
+          <span className="player__name">{`${joueur?.jfirst} ${joueur?.jlast}`}</span>
+          <p className="player__number">- {joueur?.jnumber} -</p>
         </div>
       </div>
     </card>

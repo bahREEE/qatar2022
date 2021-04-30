@@ -13,6 +13,7 @@
   position: relative;
 }
 .team__flag {
+  z-index: 1000;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -22,6 +23,7 @@
 
 .team__flag:hover::after {
   content: "";
+  z-index: 1001;
   position: absolute;
   top: 0;
   right: 0;
@@ -32,6 +34,7 @@
 
 .team__flag:hover > .team__name {
   opacity: 1;
+  z-index: 2000;
 }
 
 .team__flag--img {
@@ -40,6 +43,7 @@
 }
 
 .team__name {
+  z-index: 2000;
   position: absolute;
   z-index: 2;
   top: 50%;
@@ -54,7 +58,7 @@
 
 .team__positions {
   width: 100%;
-  height: 80%;
+  height: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,7 +75,6 @@
 .team__goalkeeper {
   flex: 0 0 15%;
   align-self: center;
-  border: 1px solid yellow;
 }
 
 .team__goalkeeper--1 {
@@ -79,22 +82,19 @@
 }
 .team__defender {
   flex: 0 0 20%;
-  border: 1px solid blue;
 }
 
 .team__midfielder {
-  border: 1px solid green;
   flex: 1;
 }
 
 .team__forward {
   flex: 0 0 32%;
-  border: 1px solid red;
 }
 
 .team__forward--2,
-.team__forward--3,
 .team__midfielder--2,
-.team__defender--2 {
+.team__defender--2,
+.team__defender--3 {
   align-self: flex-start;
 }

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Footsvg from "../../assets/svgs/Footsvg";
 import Keysvg from "../../assets/svgs/Keysvg";
 import Usersvg from "../../assets/svgs/Usersvg";
 import Button from "../../Components/Button/Button";
 import LoginInput from "../../Components/Inputs/LoginInput";
+import { login } from "../../services/api";
 import "./login.css";
 
 const Login = ({ setNotification }) => {
@@ -19,27 +19,53 @@ const Login = ({ setNotification }) => {
     setUser({ ...user, [champ]: data });
   };
 
-  const Submit = (e) => {
-    e.preventDefault();
+  const checkErrors = () => {
+    const errors = {
+      username: "",
+      password: "",
+    };
+    let foundError = false;
 
     if (!user.password) {
-      setErrorInputs({
-        ...errorsInputs,
-        password: "Please Verify your Password",
-      });
+      errors.password = "Please Verify your Password";
+      foundError = true;
     }
     if (!user.username) {
-      setErrorInputs({
-        ...errorsInputs,
-        username: "Please Verify your Username",
-      });
+      errors.username = "Please Verify your Username";
+      foundError = true;
     }
 
-    if (user.username === "Helmy" && user.password === "helmy")
-      setNotification("Hey Admin ;)", "Success");
-    else {
-      setNotification("Verifier votre données", "Error");
+    setErrorInputs(errors);
+    return foundError;
+  };
+
+  const Submit = async (e) => {
+    e.preventDefault();
+
+    if (checkErrors()) {
+      setNotification("Saisir votre données", "Error");
+      return;
     }
+
+    try {
+      const { data } = await login(user);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          username: data.user.username,
+          role: data.user.authorities,
+        })
+      );
+      localStorage.setItem("token", data.token);
+
+      setNotification("Welocome Home", "Success");
+    } catch (error) {
+      setErrorInputs({ username: "a", password: "5" });
+      setNotification("Verifier votre données", "Error");
+      console.log(error.message);
+    }
+    /*  if (user.username === "Helmy" && user.password === "helmy")
+      setNotification("Hey Admin ;)", "Success");*/
   };
 
   return (

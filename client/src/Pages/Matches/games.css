@@ -54,7 +54,7 @@
 }
 
 .games__vs {
-  color: red;
+  color: rgb(199, 47, 47);
   font-size: 3rem;
   font-weight: 900;
 }

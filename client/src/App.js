@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
+import { Switch, Redirect } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Notification from "./Components/notifications/Notifications";
 import Cross from "./assets/svgs/Cross";
@@ -9,6 +9,8 @@ import "./BoostStyles/styles.css";
 import "./App.css";
 import Games from "./Pages/Matches/Games";
 import Team from "./Pages/Team/Team";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+import UnProtectedRoute from "./ProtectedRoute/UnProtectedRoute";
 
 const App = () => {
   const [render, setRender] = useState(false);
@@ -37,7 +39,6 @@ const App = () => {
         }
 
         case "Error": {
-          console.log("erro");
           setInformations({
             ...informations,
             styles: { color: "red" },
@@ -71,15 +72,25 @@ const App = () => {
   return (
     <div className="App">
       <Switch>
-        <Route
-          path="/login"
+        <ProtectedRoute
+          component={Team}
+          role="ROLE_ADMIN"
           exact
-          render={(props) => (
-            <Login props={props} setNotification={setNotification} />
-          )}
+          path="/team/:id"
         />
-        <Route path="/games" component={Games} />
-        <Route path="/team" component={Team} />
+        <ProtectedRoute
+          component={Games}
+          role="ROLE_ADMIN"
+          exact
+          path="/games"
+        />
+
+        <UnProtectedRoute
+          component={Login}
+          setNotification={setNotification}
+          exact
+          path="/login"
+        />
         <Redirect to="/login" />
       </Switch>
       {render && <Notification informations={informations} />}

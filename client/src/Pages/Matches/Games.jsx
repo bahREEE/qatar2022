@@ -1,73 +1,65 @@
-import React from "react";
-import team from "../../assets/Images/argentina.jpg";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Matches } from "../../services/api";
 import "./games.css";
 
 const Games = () => {
+  const history = useHistory();
+  const [matches, setMatches] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await Matches();
+        setMatches(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const CheckTeam = (id) => {
+    console.log(id);
+    history.push(`/team/${id}`);
+  };
+
   return (
     <div className="games">
       <h1 className="games__title">FIFA Club World Cup Qatar 2020™</h1>
 
       <div className="games__list">
-        <div className="games__item">
-          <div className="games__team ">
-            <h2 className="games__team--name">Argentina</h2>
-            <img
-              src={team}
-              alt="team_photo--img"
-              className="games__team--img"
-            />
-          </div>
-          <h1 className="games__vs">VS</h1>
-          <div className="games__team">
-            <img src={team} alt="team_photo-img" className="games__team--img" />
-            <h2 className="games__team--name">Argentina</h2>
-          </div>
-        </div>
-        <div className="games__item">
-          <div className="games__team ">
-            <h2 className="games__team--name">Argentina</h2>
-            <img
-              src={team}
-              alt="team_photo--img"
-              className="games__team--img"
-            />
-          </div>
-          <h1 className="games__vs">VS</h1>
-          <div className="games__team">
-            <img src={team} alt="team_photo-img" className="games__team--img" />
-            <h2 className="games__team--name">Argentina</h2>
-          </div>
-        </div>
-        <div className="games__item">
-          <div className="games__team ">
-            <h2 className="games__team--name">Argentina</h2>
-            <img
-              src={team}
-              alt="team_photo--img"
-              className="games__team--img"
-            />
-          </div>
-          <h1 className="games__vs">VS</h1>
-          <div className="games__team">
-            <img src={team} alt="team_photo-img" className="games__team--img" />
-            <h2 className="games__team--name">Argentina</h2>
-          </div>
-        </div>
-        <div className="games__item">
-          <div className="games__team ">
-            <h2 className="games__team--name">Argentina</h2>
-            <img
-              src={team}
-              alt="team_photo--img"
-              className="games__team--img"
-            />
-          </div>
-          <h1 className="games__vs">VS</h1>
-          <div className="games__team">
-            <img src={team} alt="team_photo-img" className="games__team--img" />
-            <h2 className="games__team--name">Argentina</h2>
-          </div>
-        </div>
+        {matches &&
+          matches.map((match) => (
+            <div className="games__item" key={match.matchId}>
+              <div
+                className="games__team "
+                onClick={() => CheckTeam(match.equipe1.equipeId)}
+              >
+                <h2 className="games__team--name">
+                  {match.equipe1.equipeName}
+                </h2>
+                <img
+                  src={`data:image/png;base64,${match.equipe1.base64image}`}
+                  alt="team_photo--img"
+                  className="games__team--img"
+                />
+              </div>
+              <h1 className="games__vs">VS</h1>
+              <div
+                className="games__team"
+                onClick={() => CheckTeam(match.equipe2.equipeId)}
+              >
+                <img
+                  src={`data:image/png;base64,${match.equipe2.base64image}`}
+                  alt="team_photo-img"
+                  className="games__team--img"
+                />
+                <h2 className="games__team--name">
+                  {match.equipe2.equipeName}
+                </h2>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -1,9 +1,23 @@
 import axios from "axios";
 
-const url = "http://localhost:9000";
+const url = "http://localhost:8080";
 
-export const Matches = async () => {};
+export const Matches = async () => {
+  return await axios.get(`${url}/matches/`, {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  });
+};
 
-export const team = async (id) => {};
+export const TeamApi = async (id) => {
+  return await axios.get(`${url}/equipes/` + id, {
+    headers: {
+      Authorization: localStorage.getItem("a"),
+    },
+  });
+};
 
-export const login = async (user) => {};
+export const login = async (user) => {
+  return await axios.post(`${url}/login/`, user);
+};
