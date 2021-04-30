@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const ProtectedRoute = ({ role, component: Component, ...rest }) => {
   const user = JSON.parse(localStorage.getItem("user"));
-
+  console.log(rest.path);
   return (
     <Route
       {...rest}

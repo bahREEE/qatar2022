@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const url = "http://localhost:8080";
+const prefix = "Bearer";
 
 export const Matches = async () => {
   return await axios.get(`${url}/matches/`, {
     headers: {
-      Authorization: localStorage.getItem("token"),
+      Authorization: `${prefix} ${localStorage.getItem("token")}`,
     },
   });
 };
@@ -13,7 +14,7 @@ export const Matches = async () => {
 export const TeamApi = async (id) => {
   return await axios.get(`${url}/equipes/` + id, {
     headers: {
-      Authorization: localStorage.getItem("a"),
+      Authorization: `${prefix} ${localStorage.getItem("token")}`,
     },
   });
 };

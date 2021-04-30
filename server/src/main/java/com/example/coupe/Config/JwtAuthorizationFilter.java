@@ -52,7 +52,10 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
+        //System.out.println((token));
         if (token != null) {
+
+           // System.out.println((token));
             // parse the token.
             Claim role = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
                     .build()
@@ -62,7 +65,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
                     .build()
                     .verify(token.replace(TOKEN_PREFIX, ""))
                     .getSubject();
-            System.out.println("El role howa : " + role);
+           // System.out.println("El role howa : " + role);
             if (user != null) {
                 List<String> roles = role.asList(String.class);
                 List<GrantedAuthority> authorities = new ArrayList<>();

@@ -5,12 +5,13 @@ import Notification from "./Components/notifications/Notifications";
 import Cross from "./assets/svgs/Cross";
 import Check from "./assets/svgs/Check";
 import Info from "./assets/svgs/info";
-import "./BoostStyles/styles.css";
-import "./App.css";
 import Games from "./Pages/Matches/Games";
+import UserAcceuil from "./Pages/User/UserAcceuil";
 import Team from "./Pages/Team/Team";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import UnProtectedRoute from "./ProtectedRoute/UnProtectedRoute";
+import "./BoostStyles/styles.css";
+import "./App.css";
 
 const App = () => {
   const [render, setRender] = useState(false);
@@ -83,6 +84,13 @@ const App = () => {
           role="ROLE_ADMIN"
           exact
           path="/games"
+        />
+
+        <ProtectedRoute
+          component={UserAcceuil}
+          role="ROLE_USER"
+          exact
+          path="/user"
         />
 
         <UnProtectedRoute

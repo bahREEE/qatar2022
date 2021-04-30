@@ -8,6 +8,14 @@ const UnProtectedRoute = ({
   ...rest
 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
+
+  const redirectRole = () => {
+    return user.role.some((auths) => auths.authority === "ROLE_ADMIN") ? (
+      <Redirect to="/games" />
+    ) : (
+      <Redirect to="/user" />
+    );
+  };
   return (
     <Route
       {...rest}
@@ -15,7 +23,7 @@ const UnProtectedRoute = ({
         !user ? (
           <Component {...props} setNotification={setNotification} />
         ) : (
-          <Redirect to="/games" />
+          redirectRole()
         )
       }
     />
