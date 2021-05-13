@@ -50,7 +50,8 @@
   text-align: center;
 }
 .games__team--img {
-  width: 20rem;
+  width: 15rem;
+  height: 8rem;
 }
 
 .games__vs {

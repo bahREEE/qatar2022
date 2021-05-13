@@ -10,11 +10,13 @@ const UnProtectedRoute = ({
   const user = JSON.parse(localStorage.getItem("user"));
 
   const redirectRole = () => {
-    return user.role.some((auths) => auths.authority === "ROLE_ADMIN") ? (
-      <Redirect to="/games" />
-    ) : (
-      <Redirect to="/user" />
-    );
+    if (user) {
+      if (user.role.some((auths) => auths.authority === "ROLE_USER"))
+        return <Redirect to="/user/games" />;
+      else if (user.role.some((auths) => auths.authority === "ROLE_ADMIN"))
+        return <Redirect to="/admin/games" />;
+      return <Redirect to="/login" />;
+    }
   };
   return (
     <Route

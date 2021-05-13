@@ -17,23 +17,25 @@ import com.example.coupe.Utilities.MyByte;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "EquipeTBL")
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Equipe {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long equipeId;
+    private Long id;
 
     @Column(name = "equipeName", nullable = false)
     private String equipeName;
 
 
     @Column(name = "equipeContinent", nullable = false)
-    private String equipeContinent;
+        private String equipeContinent;
 
     @Column(name = "classementMondial", nullable = true)
     private int classementMondial;
@@ -42,9 +44,7 @@ public class Equipe {
     @JsonManagedReference
     private List<Joueur> listJoueurs;
 
-    @ManyToOne
-    @JoinColumn(name="groupeId")
-    private Groupe groupe;
+
 
     @Column(name = "EquipeImagePath", nullable = false)
     private String imagepath;
@@ -52,12 +52,12 @@ public class Equipe {
     @Column(name = "base64image")
     private String base64image;
 
-    public Long getEquipeId() {
-        return equipeId;
+    public Long getId() {
+        return id;
     }
 
-    public void setEquipeId(Long equipeId) {
-        this.equipeId = equipeId;
+    public void setEquipeId(Long id) {
+        this.id = id;
     }
 
     public String getEquipeName() {
@@ -92,13 +92,7 @@ public class Equipe {
         this.listJoueurs = listJoueurs;
     }
 
-    public Groupe getGroupe() {
-        return groupe;
-    }
 
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
-    }
 
     public String getImagepath() {
         return imagepath;

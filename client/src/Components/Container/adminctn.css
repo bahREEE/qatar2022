@@ -1,0 +1,40 @@
+.admin {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url(../../assets//Images/games.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__admin {
+  width: 95%;
+  min-height: 90vh;
+  border-radius: 20px;
+  background-color: rgba(184, 182, 182, 0.7);
+  display: flex;
+}
+.container {
+  flex: 1;
+  position: relative;
+  padding: 0rem 2rem;
+}
+.container__title {
+  padding: 3rem;
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.addList:visited,
+.addList:link {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 3rem;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--main-color);
+}

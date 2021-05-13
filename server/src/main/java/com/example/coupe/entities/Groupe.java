@@ -24,12 +24,12 @@ public class Groupe {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long groupeId;
+    private Long id;
 
-    private String groupeName;
+        private String groupeName;
 
     @OneToMany(mappedBy = "groupe")
     @JsonIgnore
-    private Set<Equipe> equipes;
+    private Set<Match> matches;
 
 }

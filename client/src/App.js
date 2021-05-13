@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Switch, Redirect } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Notification from "./Components/notifications/Notifications";
@@ -6,12 +6,13 @@ import Cross from "./assets/svgs/Cross";
 import Check from "./assets/svgs/Check";
 import Info from "./assets/svgs/info";
 import Games from "./Pages/Matches/Games";
-import UserAcceuil from "./Pages/User/UserAcceuil";
+import AdminAcceuil from "./Pages/Admin/AdminAcceuil";
 import Team from "./Pages/Team/Team";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import UnProtectedRoute from "./ProtectedRoute/UnProtectedRoute";
 import "./BoostStyles/styles.css";
 import "./App.css";
+import Signup from "./Pages/SignUp/Signup";
 
 const App = () => {
   const [render, setRender] = useState(false);
@@ -75,22 +76,21 @@ const App = () => {
       <Switch>
         <ProtectedRoute
           component={Team}
-          role="ROLE_ADMIN"
+          role="ROLE_USER"
           exact
-          path="/team/:id"
+          path="/user/team/:id"
         />
         <ProtectedRoute
           component={Games}
-          role="ROLE_ADMIN"
+          role="ROLE_USER"
           exact
-          path="/games"
+          path="/user/games"
         />
 
         <ProtectedRoute
-          component={UserAcceuil}
-          role="ROLE_USER"
-          exact
-          path="/user"
+          component={AdminAcceuil}
+          role="ROLE_ADMIN"
+          path="/admin"
         />
 
         <UnProtectedRoute
@@ -98,6 +98,12 @@ const App = () => {
           setNotification={setNotification}
           exact
           path="/login"
+        />
+        <UnProtectedRoute
+          component={Signup}
+          setNotification={setNotification}
+          exact
+          path="/signup"
         />
         <Redirect to="/login" />
       </Switch>

@@ -27,8 +27,8 @@ public class Match {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", insertable = false, updatable = false)
-    private Long matchId;
+    @Column(name = "match_id", insertable = false, updatable = false)
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "equipe1_id")
@@ -50,10 +50,11 @@ public class Match {
 
     private String terrain;
 
+
+
     @ManyToOne
-    @JoinColumn(name = "matchId", nullable = false)
-    @JsonBackReference
-    private Arbitre arbitre;
+    @JoinColumn(name="groupeId")
+    private Groupe groupe;
 
 
 }

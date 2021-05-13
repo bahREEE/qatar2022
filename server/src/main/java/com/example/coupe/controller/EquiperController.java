@@ -32,11 +32,7 @@ public class EquiperController {
         return equipeRepository.findAll();
     }
 
-    @GetMapping(value = "/groupe/{id}")
-    public Set<Equipe> getEquipesGroupe(@PathVariable Long id){
-        Groupe g = groupeRepository.findById(id).orElseThrow();
-        return g.getEquipes();
-    }
+
 
     @GetMapping(value = "/{id}")
     public Equipe getEquipe(@PathVariable Long id) {
@@ -46,13 +42,13 @@ public class EquiperController {
     @PostMapping(value="/")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> addEquipe(@RequestBody Equipe e){
-        System.out.println(e.getGroupe().getGroupeId());
         equipeRepository.save(e);
         return new ResponseEntity<>("Equipe was added successfully !", HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<String> updateEquipe(@PathVariable(name = "id") Long id, @RequestBody Equipe equipe) {
+        equipe.setEquipeId(id);
         equipe.setEquipeId(id);
         equipeRepository.save(equipe);
         return new ResponseEntity<>("Equipe was updated successfully !", HttpStatus.OK);

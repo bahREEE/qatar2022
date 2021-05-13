@@ -20,7 +20,7 @@ public class Joueur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long joueurId;
+    private Long id;
 
     @Column(name = "jfirst", nullable = false)
     private String jfirst;
@@ -47,12 +47,12 @@ public class Joueur {
     private Equipe equipe;
 
 
-    public Long getJoueurId(){
-        return joueurId;
+    public Long getId(){
+        return id;
     }
 
     public void setJoueurId(Long id){
-        this.joueurId = id;
+        this.id = id;
     }
 
     public String getJfirst() {

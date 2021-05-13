@@ -20,7 +20,7 @@ public class Spectateur{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long spectateurId;
+    private Long id;
 
     private String spectateurUsername;
 

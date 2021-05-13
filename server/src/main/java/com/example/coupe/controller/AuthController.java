@@ -33,7 +33,7 @@ public class AuthController {
       Authentication authenticate =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
       User user = (User) userDetails.loadUserByUsername(loginRequest.getUsername());
        SecurityContextHolder.getContext().setAuthentication(authenticate);
-       System.out.println(user.getAuthorities());
+      // System.out.println(user.getAuthorities());
         return authService.login(user);
   
     }

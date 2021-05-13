@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Footsvg from "../../assets/svgs/Footsvg";
-import Keysvg from "../../assets/svgs/Keysvg";
-import Usersvg from "../../assets/svgs/Usersvg";
 import Button from "../../Components/Button/Button";
 import LoginInput from "../../Components/Inputs/LoginInput";
 import { login } from "../../services/api";
+import { Link } from "react-router-dom";
 import "./login.css";
 
 const Login = ({ setNotification }) => {
@@ -70,9 +69,9 @@ const Login = ({ setNotification }) => {
 
   return (
     <div className="login__bg">
-      <div className="login__container" onSubmit={(e) => Submit(e)}>
+      <div className="login__container">
         <Footsvg className="login__logo-icon" />
-        <form className="login__form">
+        <form className="login__form" onSubmit={(e) => Submit(e)}>
           <LoginInput
             name="username"
             id="user"
@@ -82,9 +81,8 @@ const Login = ({ setNotification }) => {
             changeUser={changeUser}
             autoFocus
             errorInput={errorsInputs.username}
-          >
-            <Usersvg className="input__icon" />
-          </LoginInput>
+          />
+
           <LoginInput
             name="password"
             id="password"
@@ -93,13 +91,16 @@ const Login = ({ setNotification }) => {
             value={user.password}
             errorInput={errorsInputs.password}
             changeUser={changeUser}
-          >
-            <Keysvg className="input__icon" />
-          </LoginInput>
+          />
+
           <div className="elem-center">
             <Button type="submit" text="Login" />
           </div>
         </form>
+
+        <Link to="/signup" className="login__sign">
+          sign up
+        </Link>
       </div>
     </div>
   );

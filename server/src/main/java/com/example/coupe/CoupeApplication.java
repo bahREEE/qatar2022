@@ -21,8 +21,8 @@ private RoleRepository roleRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-	//	roleRepository.save(new MyRole(null, ERole.ROLE_ADMIN));
-	//	roleRepository.save(new MyRole(null,ERole.ROLE_USER));
+		//roleRepository.save(new MyRole(null, ERole.ROLE_ADMIN));
+		//roleRepository.save(new MyRole(null,ERole.ROLE_USER));
 	}
 
 }

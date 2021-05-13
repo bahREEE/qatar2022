@@ -1,0 +1,51 @@
+.btn-valid {
+  outline: 0;
+  border: 0;
+  padding: 1rem 3rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: white;
+  background-color: #06b8b8;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.group__form {
+  width: 60%;
+
+  margin: 0 auto;
+  padding: 1rem 0rem;
+}
+
+.addM {
+  padding: 1rem 10rem;
+}
+.addM__container {
+  display: flex;
+  height: 30rem;
+  margin-bottom: 2rem;
+}
+
+.equipe {
+  flex: 1;
+  margin: 0rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.equipe__photo {
+  align-self: center;
+  width: 30rem;
+  margin: 1rem 0rem;
+}
+
+.equipe__vs {
+  text-align: center;
+  align-self: center;
+}
+
+.equipe__btn {
+  display: block;
+  margin: 2rem auto;
+}

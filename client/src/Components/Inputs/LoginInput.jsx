@@ -10,6 +10,7 @@ const LoginInput = ({
   autoFocus,
   changeUser,
   errorInput,
+  required,
 }) => {
   return (
     <input
@@ -21,6 +22,7 @@ const LoginInput = ({
       className={`input--1 ${errorInput && "input--1-error"}`}
       value={value}
       onChange={(e) => changeUser(name, e.target.value)}
+      required={required}
     />
   );
 };

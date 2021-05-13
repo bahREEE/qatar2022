@@ -35,7 +35,7 @@ public class MyUser {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
+	private Long id;
 
     @NotBlank(message = "The username field is required")
     @Column(unique = true)

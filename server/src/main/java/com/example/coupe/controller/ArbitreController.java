@@ -37,7 +37,7 @@ public class ArbitreController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<String> modifarbitre(@RequestBody Arbitre arbitre,@PathVariable(name="id") Long id){
-        arbitre.setArbitreId(id);
+        arbitre.setId(id);
         arbitreRepository.save(arbitre);       
         return new ResponseEntity<>("Arbitre updated successfully !", HttpStatus.OK);
     }

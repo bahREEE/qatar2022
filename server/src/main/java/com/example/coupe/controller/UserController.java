@@ -61,7 +61,7 @@ public class UserController {
     @PutMapping(value = "/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> updateuser(@PathVariable(name = "id") Long id, @RequestBody MyUser user){
-        user.setUserId(id);
+        user.setId(id);
         userRepository.save(user);
         return new ResponseEntity<>("User updated successfully !", HttpStatus.OK);
     }
