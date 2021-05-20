@@ -20,7 +20,7 @@ const Games = () => {
 
   const CheckTeam = (id) => {
     console.log(id);
-    history.push(`/team/${id}`);
+    history.push(`/user/team/${id}`);
   };
 
   return (
@@ -28,12 +28,12 @@ const Games = () => {
       <h1 className="games__title">FIFA Club World Cup Qatar 2020™</h1>
 
       <div className="games__list">
-        {matches &&
+        {matches.length !== 0 &&
           matches.map((match) => (
-            <div className="games__item" key={match.matchId}>
+            <div key={match.matchId} className="games__item">
               <div
                 className="games__team "
-                onClick={() => CheckTeam(match.equipe1.equipeId)}
+                onClick={() => CheckTeam(match.equipe1.id)}
               >
                 <h2 className="games__team--name">
                   {match.equipe1.equipeName}
@@ -47,7 +47,7 @@ const Games = () => {
               <h1 className="games__vs">VS</h1>
               <div
                 className="games__team"
-                onClick={() => CheckTeam(match.equipe2.equipeId)}
+                onClick={() => CheckTeam(match.equipe2.id)}
               >
                 <img
                   src={`data:image/png;base64,${match.equipe2.base64image}`}
